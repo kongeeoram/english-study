@@ -1110,12 +1110,25 @@
         
         <div class="copyright">
             이 콘텐츠는 개인 학습 목적으로만 이용하실 수 있습니다.<br>
-            콘텐츠 이용에 관한 문의: newpple@naver.com
+            콘텐츠 이용에 관한 문의: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2749425057574b426749465142550944484a">[email&#160;protected]</a>
         </div>
     </div>
     
     <script>
+        var videoId = 'udvsSnrbqhM';
+        
         function showTab(n) {
+            // 1. STEP1, DICTATION의 video-container를 썸네일로 복원
+            restoreThumb('tab1', 'thumb1');
+            restoreThumb('tab2', 'thumb2');
+            
+            // 2. STEP2 iframe 멈추기 (src 리셋)
+            var ytplayer = document.getElementById('ytplayer');
+            if (ytplayer) {
+                ytplayer.src = 'https://www.youtube.com/embed/' + videoId + '?enablejsapi=1&rel=0';
+            }
+            
+            // 3. 탭 전환
             var tabs = document.querySelectorAll('.tab-content');
             var btns = document.querySelectorAll('.tab-btn');
             tabs.forEach(function(tab) { tab.classList.remove('active'); });
@@ -1125,24 +1138,37 @@
             window.scrollTo(0, 0);
         }
         
+        function restoreThumb(tabId, thumbId) {
+            var tab = document.getElementById(tabId);
+            var vc = tab.querySelector('.video-container');
+            if (vc) {
+                var thumb = document.createElement('div');
+                thumb.className = 'youtube-thumbnail';
+                thumb.id = thumbId;
+                thumb.setAttribute('onclick', "playVideo('" + thumbId + "')");
+                thumb.innerHTML = '<img src="https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg" alt="썸네일"><div class="play-overlay"><div class="play-btn"></div></div>';
+                vc.parentNode.replaceChild(thumb, vc);
+            }
+        }
+        
         function playVideo(thumbId) {
             var thumb = document.getElementById(thumbId);
+            if (!thumb) return;
             var container = document.createElement('div');
             container.className = 'video-container';
-            container.innerHTML = '<iframe src="https://www.youtube.com/embed/udvsSnrbqhM?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             thumb.parentNode.replaceChild(container, thumb);
         }
         
         function playAt(seconds) {
             var iframe = document.getElementById('ytplayer');
-            iframe.src = 'https://www.youtube.com/embed/udvsSnrbqhM?start=' + seconds + '&autoplay=1&rel=0';
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?start=' + seconds + '&autoplay=1&rel=0';
         }
         
-        function selectOption(element) {
-            var parent = element.parentElement;
-            var options = parent.querySelectorAll('.quiz-option');
-            options.forEach(function(opt) { opt.classList.remove('selected'); });
-            element.classList.add('selected');
+        function selectOption(el) {
+            var opts = el.parentElement.querySelectorAll('.quiz-option');
+            opts.forEach(function(o) { o.classList.remove('selected'); });
+            el.classList.add('selected');
         }
     </script>
 </body>
