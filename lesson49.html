@@ -16,38 +16,14 @@
         }
         .container { max-width: 800px; margin: 0 auto; }
         
-        /* 헤더 */
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding: 20px;
         }
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1f2937;
-        }
+        .header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: #1f2937; }
         .header p { font-size: 14px; color: #6b7280; }
         
-        /* 유튜브 */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            margin-bottom: 25px;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 12px;
-        }
-        
-        /* 탭 메뉴 */
         .tab-menu {
             display: flex;
             gap: 5px;
@@ -68,23 +44,12 @@
             border: none;
             transition: all 0.3s;
         }
-        .tab-btn.active {
-            background: #1f2937;
-            color: #fff;
-            font-weight: 600;
-        }
-        .tab-btn small {
-            display: block;
-            font-weight: 400;
-            margin-top: 2px;
-            font-size: 10px;
-        }
+        .tab-btn.active { background: #1f2937; color: #fff; font-weight: 600; }
+        .tab-btn small { display: block; font-weight: 400; margin-top: 2px; font-size: 10px; }
         
-        /* 탭 콘텐츠 */
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
-        /* 카드 */
         .card {
             background: #fff;
             border-radius: 16px;
@@ -93,7 +58,6 @@
             margin-bottom: 15px;
         }
         
-        /* 섹션 타이틀 */
         .section-title {
             display: flex;
             align-items: center;
@@ -112,32 +76,72 @@
             justify-content: center;
             font-size: 18px;
         }
-        .section-title h2 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1f2937;
+        .section-title h2 { font-size: 18px; font-weight: 600; color: #1f2937; }
+        .section-subtitle { font-size: 12px; color: #9ca3af; margin-left: auto; }
+        
+        /* 유튜브 썸네일 */
+        .youtube-thumbnail {
+            display: block;
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
         }
-        .section-subtitle {
-            font-size: 12px;
-            color: #9ca3af;
-            margin-left: auto;
+        .youtube-thumbnail img { width: 100%; display: block; }
+        .youtube-thumbnail .play-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .youtube-thumbnail:hover .play-overlay { background: rgba(0,0,0,0.4); }
+        .youtube-thumbnail .play-btn {
+            width: 68px;
+            height: 48px;
+            background: #ff0000;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .youtube-thumbnail .play-btn::after {
+            content: "";
+            border-style: solid;
+            border-width: 10px 0 10px 18px;
+            border-color: transparent transparent transparent #fff;
+            margin-left: 4px;
         }
         
-        /* 안내 텍스트 */
+        /* 유튜브 embed */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 20px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+        
         .guide-text {
             text-align: center;
-            padding: 20px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
             color: #6b7280;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.8;
         }
+        .guide-text b { color: #1f2937; }
         
-        /* 네비게이션 버튼 */
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 20px; }
         .nav-btn {
             padding: 12px 25px;
             border-radius: 10px;
@@ -147,20 +151,11 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        .nav-btn.prev {
-            background: #f3f4f6;
-            color: #6b7280;
-        }
-        .nav-btn.next {
-            background: #1f2937;
-            color: #fff;
-        }
-        .nav-btn:hover {
-            transform: translateY(-2px);
-        }
+        .nav-btn.prev { background: #f3f4f6; color: #6b7280; }
+        .nav-btn.next { background: #1f2937; color: #fff; }
+        .nav-btn:hover { transform: translateY(-2px); }
         .nav-btn.hidden { visibility: hidden; }
         
-        /* 번호 뱃지 */
         .num-badge {
             display: inline-flex;
             align-items: center;
@@ -175,17 +170,10 @@
             margin-right: 10px;
         }
         
-        /* ========== DICTATION ========== */
-        .dictation-item {
-            padding: 15px 0;
-            border-bottom: 1px solid #f3f4f6;
-        }
+        /* DICTATION */
+        .dictation-item { padding: 15px 0; border-bottom: 1px solid #f3f4f6; }
         .dictation-item:last-child { border-bottom: none; }
-        .dictation-sentence {
-            font-size: 15px;
-            line-height: 2.2;
-            color: #374151;
-        }
+        .dictation-sentence { font-size: 15px; line-height: 2.2; color: #374151; }
         .blank-input {
             border: none;
             border-bottom: 2px solid #3b82f6;
@@ -198,24 +186,10 @@
             border-radius: 4px 4px 0 0;
             margin: 0 3px;
         }
-        .blank-input:focus {
-            outline: none;
-            background: #dbeafe;
-            border-bottom-color: #1d4ed8;
-        }
-        .blank-num {
-            font-size: 10px;
-            color: #3b82f6;
-            font-weight: 600;
-            vertical-align: super;
-        }
+        .blank-input:focus { outline: none; background: #dbeafe; border-bottom-color: #1d4ed8; }
+        .blank-num { font-size: 10px; color: #3b82f6; font-weight: 600; vertical-align: super; }
         
-        /* 정답 섹션 */
-        .answer-section {
-            margin-top: 25px;
-            background: #f8fafc;
-            border-radius: 12px;
-        }
+        .answer-section { margin-top: 25px; background: #f8fafc; border-radius: 12px; }
         .answer-section summary {
             padding: 15px 20px;
             background: #1f2937;
@@ -225,45 +199,18 @@
             border-radius: 12px;
             list-style: none;
         }
-        .answer-section[open] summary {
-            border-radius: 12px 12px 0 0;
-        }
+        .answer-section[open] summary { border-radius: 12px 12px 0 0; }
         .answer-section summary::-webkit-details-marker { display: none; }
-        .answer-content {
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .answer-item {
-            background: #fff;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 13px;
-            border: 1px solid #e5e7eb;
-        }
+        .answer-content { padding: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .answer-item { background: #fff; padding: 8px 14px; border-radius: 6px; font-size: 13px; border: 1px solid #e5e7eb; }
         
-        /* ========== STEP 2 스크립트 ========== */
-        .script-item {
-            padding: 12px 0;
-            border-bottom: 1px solid #f3f4f6;
-        }
+        /* STEP 2 스크립트 */
+        .script-item { padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
         .script-item:last-child { border-bottom: none; }
-        
-        .script-main {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        .script-text {
-            flex: 1;
-            font-size: 15px;
-            line-height: 1.7;
-            color: #1f2937;
-        }
+        .script-main { display: flex; align-items: flex-start; gap: 10px; }
+        .script-text { flex: 1; font-size: 15px; line-height: 1.7; color: #1f2937; }
         .speaker-btn {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             border-radius: 8px;
             background: #f3f4f6;
             border: none;
@@ -275,15 +222,9 @@
             transition: all 0.2s;
             flex-shrink: 0;
         }
-        .speaker-btn:hover {
-            background: #e5e7eb;
-            transform: scale(1.05);
-        }
+        .speaker-btn:hover { background: #e5e7eb; transform: scale(1.05); }
         
-        /* 표현 접기/펼치기 */
-        .expression-toggle {
-            margin: 8px 0 0 36px;
-        }
+        .expression-toggle { margin: 8px 0 0 36px; }
         .expression-toggle summary {
             font-size: 13px;
             color: #3b82f6;
@@ -295,9 +236,7 @@
             display: inline-block;
         }
         .expression-toggle summary::-webkit-details-marker { display: none; }
-        .expression-toggle summary:hover {
-            background: #dbeafe;
-        }
+        .expression-toggle summary:hover { background: #dbeafe; }
         .expression-toggle-content {
             margin-top: 8px;
             padding: 12px 15px;
@@ -305,16 +244,9 @@
             border-radius: 8px;
             border-left: 3px solid #f59e0b;
         }
-        .expression-toggle-content p {
-            font-size: 14px;
-            color: #92400e;
-            margin-bottom: 5px;
-        }
-        .expression-toggle-content p:last-child {
-            margin-bottom: 0;
-        }
+        .expression-toggle-content p { font-size: 14px; color: #92400e; margin-bottom: 5px; }
+        .expression-toggle-content p:last-child { margin-bottom: 0; }
         
-        /* 핵심문장 강조 */
         .script-item.highlight {
             background: #fefce8;
             margin: 10px -15px;
@@ -322,11 +254,9 @@
             border-radius: 10px;
             border-bottom: none;
         }
-        .script-item.highlight .num-badge {
-            background: #f59e0b;
-        }
+        .script-item.highlight .num-badge { background: #f59e0b; }
         
-        /* ========== STEP 3 표현정리 ========== */
+        /* STEP 3 표현정리 */
         .expression-card {
             background: #fff;
             border-radius: 12px;
@@ -344,8 +274,7 @@
             flex-wrap: wrap;
         }
         .expression-num {
-            width: 26px;
-            height: 26px;
+            width: 26px; height: 26px;
             background: #1f2937;
             border-radius: 6px;
             color: #fff;
@@ -355,60 +284,18 @@
             align-items: center;
             justify-content: center;
         }
-        .expression-keyword {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1f2937;
-        }
-        .expression-meaning {
-            font-size: 13px;
-            color: #6b7280;
-        }
-        .original-sentence {
-            background: #fef3c7;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 10px;
-        }
-        .original-sentence .label {
-            font-size: 11px;
-            color: #92400e;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        .original-sentence .sentence {
-            font-size: 14px;
-            color: #1f2937;
-        }
-        .original-sentence mark {
-            background: #fcd34d;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .example-sentences .label {
-            font-size: 11px;
-            color: #6b7280;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .example {
-            background: #f8fafc;
-            border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 6px;
-        }
-        .example .korean {
-            font-size: 13px;
-            color: #6b7280;
-            margin-bottom: 3px;
-        }
-        .example .english {
-            font-size: 14px;
-            color: #1f2937;
-            font-weight: 500;
-        }
+        .expression-keyword { font-size: 16px; font-weight: 700; color: #1f2937; }
+        .expression-meaning { font-size: 13px; color: #6b7280; }
+        .original-sentence { background: #fef3c7; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+        .original-sentence .label { font-size: 11px; color: #92400e; font-weight: 600; margin-bottom: 5px; }
+        .original-sentence .sentence { font-size: 14px; color: #1f2937; }
+        .original-sentence mark { background: #fcd34d; padding: 2px 5px; border-radius: 3px; }
+        .example-sentences .label { font-size: 11px; color: #6b7280; font-weight: 600; margin-bottom: 8px; }
+        .example { background: #f8fafc; border-radius: 6px; padding: 10px; margin-bottom: 6px; }
+        .example .korean { font-size: 13px; color: #6b7280; margin-bottom: 3px; }
+        .example .english { font-size: 14px; color: #1f2937; font-weight: 500; }
         
-        /* ========== QUIZ ========== */
+        /* QUIZ */
         .quiz-type-title {
             font-size: 14px;
             font-weight: 600;
@@ -418,24 +305,9 @@
             border-radius: 8px;
             margin-bottom: 15px;
         }
-        .quiz-item {
-            padding: 15px;
-            background: #f8fafc;
-            border-radius: 10px;
-            margin-bottom: 12px;
-        }
-        .quiz-question {
-            font-size: 15px;
-            line-height: 1.8;
-            color: #374151;
-            margin-bottom: 10px;
-        }
-        .quiz-hint {
-            font-size: 12px;
-            color: #9ca3af;
-            margin-top: 8px;
-            font-style: italic;
-        }
+        .quiz-item { padding: 15px; background: #f8fafc; border-radius: 10px; margin-bottom: 12px; }
+        .quiz-question { font-size: 15px; line-height: 1.8; color: #374151; margin-bottom: 10px; }
+        .quiz-hint { font-size: 12px; color: #9ca3af; margin-top: 8px; font-style: italic; }
         .quiz-input {
             width: 100%;
             padding: 12px 15px;
@@ -446,11 +318,7 @@
             margin-top: 10px;
             transition: all 0.2s;
         }
-        .quiz-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            background: #f0f9ff;
-        }
+        .quiz-input:focus { outline: none; border-color: #3b82f6; background: #f0f9ff; }
         .quiz-blank {
             border: none;
             border-bottom: 2px solid #3b82f6;
@@ -462,15 +330,8 @@
             text-align: center;
             border-radius: 4px 4px 0 0;
         }
-        .quiz-blank:focus {
-            outline: none;
-            background: #dbeafe;
-        }
-        
-        /* 객관식 옵션 */
-        .quiz-options {
-            margin-top: 10px;
-        }
+        .quiz-blank:focus { outline: none; background: #dbeafe; }
+        .quiz-options { margin-top: 10px; }
         .quiz-option {
             display: block;
             padding: 12px 15px;
@@ -482,16 +343,9 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .quiz-option:hover {
-            border-color: #3b82f6;
-            background: #f0f9ff;
-        }
-        .quiz-option.selected {
-            border-color: #3b82f6;
-            background: #dbeafe;
-        }
+        .quiz-option:hover { border-color: #3b82f6; background: #f0f9ff; }
+        .quiz-option.selected { border-color: #3b82f6; background: #dbeafe; }
         
-        /* 저작권 */
         .copyright {
             text-align: center;
             margin-top: 40px;
@@ -501,35 +355,22 @@
             border-top: 1px solid #e5e7eb;
         }
         
-        /* 반응형 */
         @media (max-width: 600px) {
             body { padding: 15px; }
             .header h1 { font-size: 20px; }
             .tab-btn { font-size: 10px; padding: 10px 5px; }
             .tab-btn small { font-size: 8px; }
             .blank-input { min-width: 70px; font-size: 13px; }
-            .quiz-blank { min-width: 80px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 헤더 -->
         <div class="header">
             <h1>막연한 자기긍정의 위험성</h1>
             <p>The Danger of Forced Positivity</p>
         </div>
         
-        <!-- 유튜브 -->
-        <div class="video-container">
-            <iframe id="ytplayer" 
-                src="https://www.youtube.com/embed/udvsSnrbqhM?rel=0&modestbranding=1" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        
-        <!-- 탭 메뉴 -->
         <div class="tab-menu">
             <button class="tab-btn active" onclick="showTab(1)">STEP 1<small>자막없이</small></button>
             <button class="tab-btn" onclick="showTab(2)">DICTATION<small>받아쓰기</small></button>
@@ -538,19 +379,26 @@
             <button class="tab-btn" onclick="showTab(5)">QUIZ<small>퀴즈</small></button>
         </div>
         
-        <!-- ========== TAB 1: STEP 1 자막없이 듣기 ========== -->
+        <!-- TAB 1: STEP 1 -->
         <div class="tab-content active" id="tab1">
             <div class="card">
                 <div class="section-title">
                     <div class="section-icon">🎧</div>
                     <h2>자막 없이 듣기</h2>
                 </div>
-                <p class="guide-text">
+                
+                <a href="https://www.youtube.com/watch?v=udvsSnrbqhM" target="_blank" class="youtube-thumbnail">
+                    <img src="https://img.youtube.com/vi/udvsSnrbqhM/maxresdefault.jpg" alt="영상 썸네일">
+                    <div class="play-overlay">
+                        <div class="play-btn"></div>
+                    </div>
+                </a>
+                
+                <div class="guide-text">
                     자막 없이 영상을 끝까지 들어보세요.<br>
                     모르는 부분이 있어도 괜찮아요.<br>
-                    전체 흐름을 파악하는 것이 목표입니다.<br><br>
-                    🎯 <b>집중해서 2~3번 반복</b>해보세요!
-                </p>
+                    <b>2~3번 반복</b>해서 전체 흐름을 파악해보세요!
+                </div>
             </div>
             <div class="nav-buttons">
                 <button class="nav-btn prev hidden">← 이전</button>
@@ -558,7 +406,7 @@
             </div>
         </div>
         
-        <!-- ========== TAB 2: DICTATION ========== -->
+        <!-- TAB 2: DICTATION -->
         <div class="tab-content" id="tab2">
             <div class="card">
                 <div class="section-title">
@@ -566,6 +414,13 @@
                     <h2>받아쓰기</h2>
                     <span class="section-subtitle">빈칸을 채워보세요</span>
                 </div>
+                
+                <a href="https://www.youtube.com/watch?v=udvsSnrbqhM" target="_blank" class="youtube-thumbnail">
+                    <img src="https://img.youtube.com/vi/udvsSnrbqhM/maxresdefault.jpg" alt="영상 썸네일">
+                    <div class="play-overlay">
+                        <div class="play-btn"></div>
+                    </div>
+                </a>
                 
                 <div class="dictation-item">
                     <p class="dictation-sentence">
@@ -661,7 +516,7 @@
             </div>
         </div>
         
-        <!-- ========== TAB 3: STEP 2 스크립트 ========== -->
+        <!-- TAB 3: STEP 2 스크립트 -->
         <div class="tab-content" id="tab3">
             <div class="card">
                 <div class="section-title">
@@ -670,7 +525,10 @@
                     <span class="section-subtitle">🔊 클릭하면 재생</span>
                 </div>
                 
-                <!-- 문장 1 -->
+                <div class="video-container">
+                    <iframe id="ytplayer" src="https://www.youtube.com/embed/udvsSnrbqhM?enablejsapi=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">1</span>
@@ -685,7 +543,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 2 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">2</span>
@@ -694,7 +551,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 3 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">3</span>
@@ -709,7 +565,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 4 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">4</span>
@@ -718,7 +573,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 5 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">5</span>
@@ -734,7 +588,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 6 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">6</span>
@@ -749,7 +602,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 7 ⭐ 핵심 -->
                 <div class="script-item highlight">
                     <div class="script-main">
                         <span class="num-badge">7</span>
@@ -764,7 +616,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 8 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">8</span>
@@ -773,7 +624,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 9 ⭐ 핵심 -->
                 <div class="script-item highlight">
                     <div class="script-main">
                         <span class="num-badge">9</span>
@@ -789,7 +639,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 10 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">10</span>
@@ -804,7 +653,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 11 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">11</span>
@@ -820,7 +668,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 12 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">12</span>
@@ -829,7 +676,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 13 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">13</span>
@@ -845,7 +691,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 14 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">14</span>
@@ -854,7 +699,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 15 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">15</span>
@@ -863,7 +707,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 16 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">16</span>
@@ -872,7 +715,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 17 ⭐ 핵심 -->
                 <div class="script-item highlight">
                     <div class="script-main">
                         <span class="num-badge">17</span>
@@ -887,7 +729,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 18 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">18</span>
@@ -896,7 +737,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 19 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">19</span>
@@ -905,7 +745,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 20 ⭐ 핵심 -->
                 <div class="script-item highlight">
                     <div class="script-main">
                         <span class="num-badge">20</span>
@@ -921,7 +760,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 21 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">21</span>
@@ -936,7 +774,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 22 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">22</span>
@@ -945,7 +782,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 23 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">23</span>
@@ -954,7 +790,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 24 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">24</span>
@@ -963,7 +798,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 25 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">25</span>
@@ -972,7 +806,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 26 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">26</span>
@@ -987,7 +820,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 27 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">27</span>
@@ -996,7 +828,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 28 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">28</span>
@@ -1011,7 +842,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 29 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">29</span>
@@ -1020,7 +850,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 30 ⭐ 핵심 -->
                 <div class="script-item highlight">
                     <div class="script-main">
                         <span class="num-badge">30</span>
@@ -1035,7 +864,6 @@
                     </details>
                 </div>
                 
-                <!-- 문장 31 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">31</span>
@@ -1044,7 +872,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 32 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">32</span>
@@ -1053,7 +880,6 @@
                     </div>
                 </div>
                 
-                <!-- 문장 33 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">33</span>
@@ -1068,7 +894,7 @@
             </div>
         </div>
         
-        <!-- ========== TAB 4: STEP 3 표현정리 ========== -->
+        <!-- TAB 4: STEP 3 표현정리 -->
         <div class="tab-content" id="tab4">
             <div class="card">
                 <div class="section-title">
@@ -1076,7 +902,6 @@
                     <h2>주요표현 5개</h2>
                 </div>
                 
-                <!-- 표현 1 -->
                 <div class="expression-card">
                     <div class="expression-header">
                         <span class="expression-num">1</span>
@@ -1100,7 +925,6 @@
                     </div>
                 </div>
                 
-                <!-- 표현 2 -->
                 <div class="expression-card">
                     <div class="expression-header">
                         <span class="expression-num">2</span>
@@ -1124,7 +948,6 @@
                     </div>
                 </div>
                 
-                <!-- 표현 3 -->
                 <div class="expression-card">
                     <div class="expression-header">
                         <span class="expression-num">3</span>
@@ -1148,7 +971,6 @@
                     </div>
                 </div>
                 
-                <!-- 표현 4 -->
                 <div class="expression-card">
                     <div class="expression-header">
                         <span class="expression-num">4</span>
@@ -1172,7 +994,6 @@
                     </div>
                 </div>
                 
-                <!-- 표현 5 -->
                 <div class="expression-card">
                     <div class="expression-header">
                         <span class="expression-num">5</span>
@@ -1202,7 +1023,7 @@
             </div>
         </div>
         
-        <!-- ========== TAB 5: QUIZ ========== -->
+        <!-- TAB 5: QUIZ -->
         <div class="tab-content" id="tab5">
             <div class="card">
                 <div class="section-title">
@@ -1286,7 +1107,6 @@
             </div>
         </div>
         
-        <!-- 저작권 -->
         <div class="copyright">
             이 콘텐츠는 개인 학습 목적으로만 이용하실 수 있습니다.<br>
             콘텐츠 이용에 관한 문의: newpple@naver.com
@@ -1294,39 +1114,25 @@
     </div>
     
     <script>
-        // 탭 전환
         function showTab(n) {
             var tabs = document.querySelectorAll('.tab-content');
             var btns = document.querySelectorAll('.tab-btn');
-            
-            tabs.forEach(function(tab) {
-                tab.classList.remove('active');
-            });
-            btns.forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            
+            tabs.forEach(function(tab) { tab.classList.remove('active'); });
+            btns.forEach(function(btn) { btn.classList.remove('active'); });
             document.getElementById('tab' + n).classList.add('active');
             btns[n-1].classList.add('active');
-            
             window.scrollTo(0, 0);
         }
         
-        // 유튜브 타임라인 이동
         function playAt(seconds) {
             var iframe = document.getElementById('ytplayer');
-            iframe.src = 'https://www.youtube.com/embed/udvsSnrbqhM?start=' + seconds + '&autoplay=1&rel=0&modestbranding=1';
+            iframe.src = 'https://www.youtube.com/embed/udvsSnrbqhM?start=' + seconds + '&autoplay=1&rel=0';
         }
         
-        // 객관식 선택
         function selectOption(element) {
             var parent = element.parentElement;
             var options = parent.querySelectorAll('.quiz-option');
-            
-            options.forEach(function(opt) {
-                opt.classList.remove('selected');
-            });
-            
+            options.forEach(function(opt) { opt.classList.remove('selected'); });
             element.classList.add('selected');
         }
     </script>
