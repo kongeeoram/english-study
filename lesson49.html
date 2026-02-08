@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>막연한 자기긍정의 위험성 - 영어 학습자료</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #ffffff;
+            color: #374151;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        /* 헤더 */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+        .header p { font-size: 14px; color: #6b7280; }
+        
+        /* 유튜브 */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin-bottom: 25px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+        
+        /* 탭 메뉴 */
+        .tab-menu {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            background: #f3f4f6;
+            padding: 8px;
+            border-radius: 12px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 8px;
+            background: transparent;
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: #1f2937;
+            color: #fff;
+            font-weight: 600;
+        }
+        .tab-btn small {
+            display: block;
+            font-weight: 400;
+            margin-top: 2px;
+            font-size: 10px;
+        }
+        
+        /* 탭 콘텐츠 */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* 카드 */
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 15px;
+        }
+        
+        /* 섹션 타이틀 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .section-title h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .section-subtitle {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-left: auto;
+        }
+        
+        /* 문장 버튼 */
+        .sentence-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            padding: 15px 0;
+        }
+        .sentence-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #1f2937;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .sentence-btn:hover {
+            background: #374151;
+            transform: translateY(-2px);
+        }
+        
+        /* 안내 텍스트 */
+        .guide-text {
+            text-align: center;
+            padding: 15px 0;
+            color: #6b7280;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        /* 네비게이션 버튼 */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .nav-btn.prev {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        .nav-btn.next {
+            background: #1f2937;
+            color: #fff;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+        .nav-btn.hidden { visibility: hidden; }
+        
+        /* DICTATION */
+        .dictation-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .dictation-item:last-child { border-bottom: none; }
+        .dictation-sentence {
+            font-size: 15px;
+            line-height: 2;
+            color: #374151;
+        }
+        .num-badge {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #1f2937;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 10px;
+        }
+        .blank-num {
+            font-size: 10px;
+            color: #6b7280;
+            vertical-align: super;
+        }
+        
+        /* 정답 섹션 */
+        .answer-section {
+            margin-top: 25px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+        .answer-section summary {
+            padding: 15px 20px;
+            background: #1f2937;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 12px;
+            list-style: none;
+        }
+        .answer-section[open] summary {
+            border-radius: 12px 12px 0 0;
+        }
+        .answer-section summary::-webkit-details-marker { display: none; }
+        .answer-content {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .answer-item {
+            background: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        /* 스크립트 */
+        .script-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .script-item:last-child { border-bottom: none; }
+        .script-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #1f2937;
+        }
+        .script-note {
+            margin: 5px 0 0 34px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+        .script-highlight {
+            padding: 10px 15px;
+            margin: 10px 0;
+            background: #fffbeb;
+            border-radius: 8px;
+        }
+        .script-highlight .script-note {
+            color: #92400e;
+        }
+        .highlight-badge {
+            background: #f59e0b;
+        }
+        
+        /* 표현 카드 */
+        .expression-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e7eb;
+        }
+        .expression-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f3f4f6;
+            flex-wrap: wrap;
+        }
+        .expression-num {
+            width: 26px;
+            height: 26px;
+            background: #1f2937;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .expression-keyword {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .expression-meaning {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        .original-sentence {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .original-sentence .label {
+            font-size: 11px;
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .original-sentence .sentence {
+            font-size: 14px;
+            color: #1f2937;
+        }
+        .original-sentence mark {
+            background: #fcd34d;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .example-sentences .label {
+            font-size: 11px;
+            color: #6b7280;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .example {
+            background: #f8fafc;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 6px;
+        }
+        .example .korean {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 3px;
+        }
+        .example .english {
+            font-size: 14px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+        
+        /* 퀴즈 */
+        .quiz-type-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1f2937;
+            padding: 10px 15px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .quiz-item {
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .quiz-question {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #374151;
+        }
+        .quiz-hint {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 6px;
+            font-style: italic;
+        }
+        .quiz-option {
+            display: block;
+            margin: 5px 0;
+            padding: 8px 12px;
+            background: #fff;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        /* 저작권 */
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 11px;
+            color: #9ca3af;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        /* 반응형 */
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            .header h1 { font-size: 20px; }
+            .tab-btn { font-size: 10px; padding: 10px 5px; }
+            .tab-btn small { font-size: 8px; }
+            .sentence-btn { width: 38px; height: 38px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <div class="header">
+            <h1>막연한 자기긍정의 위험성</h1>
+            <p>The Danger of Forced Positivity</p>
+        </div>
+        
+        <!-- 유튜브 -->
+        <div class="video-container">
+            <iframe id="ytplayer" 
+                src="https://www.youtube.com/embed/udvsSnrbqhM" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <!-- 탭 메뉴 -->
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="showTab(1)">STEP 1<small>자막없이</small></button>
+            <button class="tab-btn" onclick="showTab(2)">DICTATION<small>받아쓰기</small></button>
+            <button class="tab-btn" onclick="showTab(3)">STEP 2<small>스크립트</small></button>
+            <button class="tab-btn" onclick="showTab(4)">STEP 3<small>표현정리</small></button>
+            <button class="tab-btn" onclick="showTab(5)">QUIZ<small>퀴즈</small></button>
+        </div>
+        
+        <!-- ========== TAB 1: STEP 1 ========== -->
+        <div class="tab-content active" id="tab1">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">🎧</div>
+                    <h2>자막 없이 듣기</h2>
+                </div>
+                <p class="guide-text">
+                    음성을 집중해서 들어보세요.<br>
+                    버튼을 누르면 해당 문장 시간으로 이동합니다.
+                </p>
+                <div class="sentence-buttons">
+                    <button class="sentence-btn" onclick="playAt(5)">1</button>
+                    <button class="sentence-btn" onclick="playAt(12)">2</button>
+                    <button class="sentence-btn" onclick="playAt(18)">3</button>
+                    <button class="sentence-btn" onclick="playAt(24)">4</button>
+                    <button class="sentence-btn" onclick="playAt(30)">5</button>
+                    <button class="sentence-btn" onclick="playAt(37)">6</button>
+                    <button class="sentence-btn" onclick="playAt(44)">7</button>
+                    <button class="sentence-btn" onclick="playAt(52)">8</button>
+                    <button class="sentence-btn" onclick="playAt(60)">9</button>
+                    <button class="sentence-btn" onclick="playAt(66)">10</button>
+                    <button class="sentence-btn" onclick="playAt(72)">11</button>
+                    <button class="sentence-btn" onclick="playAt(78)">12</button>
+                    <button class="sentence-btn" onclick="playAt(83)">13</button>
+                    <button class="sentence-btn" onclick="playAt(90)">14</button>
+                    <button class="sentence-btn" onclick="playAt(95)">15</button>
+                    <button class="sentence-btn" onclick="playAt(100)">16</button>
+                    <button class="sentence-btn" onclick="playAt(107)">17</button>
+                    <button class="sentence-btn" onclick="playAt(115)">18</button>
+                    <button class="sentence-btn" onclick="playAt(120)">19</button>
+                    <button class="sentence-btn" onclick="playAt(127)">20</button>
+                    <button class="sentence-btn" onclick="playAt(135)">21</button>
+                    <button class="sentence-btn" onclick="playAt(143)">22</button>
+                    <button class="sentence-btn" onclick="playAt(149)">23</button>
+                    <button class="sentence-btn" onclick="playAt(156)">24</button>
+                    <button class="sentence-btn" onclick="playAt(165)">25</button>
+                    <button class="sentence-btn" onclick="playAt(172)">26</button>
+                    <button class="sentence-btn" onclick="playAt(178)">27</button>
+                    <button class="sentence-btn" onclick="playAt(183)">28</button>
+                    <button class="sentence-btn" onclick="playAt(192)">29</button>
+                    <button class="sentence-btn" onclick="playAt(198)">30</button>
+                    <button class="sentence-btn" onclick="playAt(206)">31</button>
+                    <button class="sentence-btn" onclick="playAt(210)">32</button>
+                    <button class="sentence-btn" onclick="playAt(218)">33</button>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev hidden">← 이전</button>
+                <button class="nav-btn next" onclick="showTab(2)">다음 단계 →</button>
+            </div>
+        </div>
+        
+        <!-- ========== TAB 2: DICTATION ========== -->
+        <div class="tab-content" id="tab2">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">✍️</div>
+                    <h2>받아쓰기</h2>
+                    <span class="section-subtitle">빈칸을 채워보세요</span>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">1</span>
+                        "I am enough." "I am doing well." "I ________<sup class="blank-num">(1)</sup> to be loved."
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">2</span>
+                        People say that if you ________<sup class="blank-num">(2)</sup> these words every day, your life will change.
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">4</span>
+                        But today, I ________<sup class="blank-num">(3)</sup> talk about something a little uncomfortable.
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">7</span>
+                        ________<sup class="blank-num">(4)</sup>, it is the tension you feel when your actions and beliefs do not match.
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">9</span>
+                        ________<sup class="blank-num">(5)</sup>, they sense that something is off.
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">11</span>
+                        So ________<sup class="blank-num">(6)</sup> finding the cause, we try to bury the feeling quickly.
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">17</span>
+                        To avoid the discomfort of reality, we ________<sup class="blank-num">(7)</sup> seeing it.
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">20</span>
+                        What we truly need is ________<sup class="blank-num">(8)</sup> self-affirmation, ________<sup class="blank-num">(9)</sup> self-compassion.
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">26</span>
+                        It means accepting your flaws without ________<sup class="blank-num">(10)</sup>.
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">30</span>
+                        Because ________<sup class="blank-num">(11)</sup> you face the problem ________<sup class="blank-num">(12)</sup> solve it.
+                    </p>
+                </div>
+                
+                <details class="answer-section">
+                    <summary>📝 정답 확인</summary>
+                    <div class="answer-content">
+                        <span class="answer-item"><b>(1)</b> deserve</span>
+                        <span class="answer-item"><b>(2)</b> repeat</span>
+                        <span class="answer-item"><b>(3)</b> want to</span>
+                        <span class="answer-item"><b>(4)</b> Put simply</span>
+                        <span class="answer-item"><b>(5)</b> Deep down</span>
+                        <span class="answer-item"><b>(6)</b> instead of</span>
+                        <span class="answer-item"><b>(7)</b> talk ourselves out of</span>
+                        <span class="answer-item"><b>(8)</b> not</span>
+                        <span class="answer-item"><b>(9)</b> but</span>
+                        <span class="answer-item"><b>(10)</b> falling apart</span>
+                        <span class="answer-item"><b>(11)</b> only when</span>
+                        <span class="answer-item"><b>(12)</b> can you</span>
+                    </div>
+                </details>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="showTab(1)">← 이전</button>
+                <button class="nav-btn next" onclick="showTab(3)">다음 단계 →</button>
+            </div>
+        </div>
+        
+        <!-- ========== TAB 3: STEP 2 스크립트 ========== -->
+        <div class="tab-content" id="tab3">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">📖</div>
+                    <h2>영문 스크립트</h2>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">1</span>"I am enough." "I am doing well." "I deserve to be loved."</p>
+                    <p class="script-note">💡 <b>deserve to ~</b> ~할 자격이 있다</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">2</span>People say that if you repeat these words every day, your life will change.</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">3</span>And yes, self-affirmation can be helpful.</p>
+                    <p class="script-note">💡 <b>self-affirmation</b> 자기 확언</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">4</span>But today, I want to talk about something a little uncomfortable.</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">5</span>The idea that forced positivity can actually slow down your growth.</p>
+                    <p class="script-note">💡 <b>forced positivity</b> 억지 긍정 / <b>slow down</b> 속도를 늦추다</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">6</span>In psychology, there is a concept called cognitive dissonance.</p>
+                    <p class="script-note">💡 <b>cognitive dissonance</b> 인지부조화</p>
+                </div>
+                
+                <div class="script-highlight">
+                    <p class="script-text"><span class="num-badge highlight-badge">7</span>⭐ <b>Put simply</b>, it is the tension you feel when your actions and beliefs do not match.</p>
+                    <p class="script-note">⭐ <b>put simply</b> 쉽게 말해, 간단히 말하면</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">8</span>For example, imagine someone who keeps making the same mistake at work.</p>
+                </div>
+                
+                <div class="script-highlight">
+                    <p class="script-text"><span class="num-badge highlight-badge">9</span>⭐ <b>Deep down</b>, they sense that something is off.</p>
+                    <p class="script-note">⭐ <b>deep down</b> 마음 깊은 곳에서는</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">10</span>But sitting with that tension is not easy.</p>
+                    <p class="script-note">💡 <b>sit with</b> (불편한 감정을) 견디다</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">11</span>So instead of finding the cause, we try to bury the feeling quickly.</p>
+                    <p class="script-note">💡 <b>instead of</b> ~대신에 / <b>bury</b> 묻다</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">12</span>"It is fine. I am doing great."</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">13</span>With just one line, the tension fades, and you feel relieved.</p>
+                    <p class="script-note">💡 <b>fade</b> 사라지다 / <b>relieved</b> 안도하는</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">14</span>But did the problem disappear along with it?</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">15</span>No. The problem is still there.</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">16</span>This is the trap of forced positivity.</p>
+                </div>
+                
+                <div class="script-highlight">
+                    <p class="script-text"><span class="num-badge highlight-badge">17</span>⭐ To avoid the discomfort of reality, we <b>talk ourselves out of</b> seeing it.</p>
+                    <p class="script-note">⭐ <b>talk oneself out of ~ing</b> ~하지 않도록 스스로를 설득하다</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">18</span>Then what should we do instead?</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">19</span>Psychologist Kristin Neff says this in her research.</p>
+                </div>
+                
+                <div class="script-highlight">
+                    <p class="script-text"><span class="num-badge highlight-badge">20</span>⭐ What we truly need is <b>not</b> self-affirmation, <b>but</b> self-compassion.</p>
+                    <p class="script-note">⭐ <b>not A, but B</b> A가 아니라 B</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">21</span>Self-compassion means acknowledging your weaknesses while still being kind to yourself.</p>
+                    <p class="script-note">💡 <b>acknowledge</b> 인정하다 / <b>self-compassion</b> 자기연민</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">22</span>Forced positivity stops at, "I am fine."</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">23</span>But self-compassion takes one step further.</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">24</span>"I am not great at this. But that does not make me a bad person."</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">25</span>"I made a mistake. But I can learn from it."</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">26</span>It means accepting your flaws without falling apart.</p>
+                    <p class="script-note">💡 <b>fall apart</b> 무너지다</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">27</span>This is honest positivity.</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">28</span>Not the kind that ignores reality, but the kind that faces reality and still moves forward.</p>
+                    <p class="script-note">💡 <b>face reality</b> 현실을 직면하다</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">29</span>Honest positivity makes you stronger.</p>
+                </div>
+                
+                <div class="script-highlight">
+                    <p class="script-text"><span class="num-badge highlight-badge">30</span>⭐ Because <b>only when</b> you face the problem <b>can you</b> solve it.</p>
+                    <p class="script-note">⭐ <b>only when ~ can you ~</b> ~해야만 ~할 수 있다 (도치 구문)</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">31</span>Ask yourself today.</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">32</span>Am I truly comforting myself, or am I just avoiding the truth?</p>
+                </div>
+                
+                <div class="script-item">
+                    <p class="script-text"><span class="num-badge">33</span>The courage to accept your flaws — that is real strength.</p>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="showTab(2)">← 이전</button>
+                <button class="nav-btn next" onclick="showTab(4)">다음 단계 →</button>
+            </div>
+        </div>
+        
+        <!-- ========== TAB 4: STEP 3 표현정리 ========== -->
+        <div class="tab-content" id="tab4">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">📚</div>
+                    <h2>주요표현 5개</h2>
+                </div>
+                
+                <!-- 표현 1 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">1</span>
+                        <span class="expression-keyword">put simply</span>
+                        <span class="expression-meaning">쉽게 말해, 간단히 말하면</span>
+                    </div>
+                    <div class="original-sentence">
+                        <p class="label">📍 오늘의 문장</p>
+                        <p class="sentence"><mark>Put simply</mark>, it is the tension you feel when your actions and beliefs do not match.</p>
+                    </div>
+                    <div class="example-sentences">
+                        <p class="label">✏️ 예문</p>
+                        <div class="example">
+                            <p class="korean">쉽게 말해, 이 프로젝트를 끝내려면 시간이 더 필요해요.</p>
+                            <p class="english">→ Put simply, we need more time to finish this project.</p>
+                        </div>
+                        <div class="example">
+                            <p class="korean">간단히 말하면, 그건 불가능해요.</p>
+                            <p class="english">→ Put simply, it's impossible.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 표현 2 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">2</span>
+                        <span class="expression-keyword">deep down</span>
+                        <span class="expression-meaning">마음 깊은 곳에서는</span>
+                    </div>
+                    <div class="original-sentence">
+                        <p class="label">📍 오늘의 문장</p>
+                        <p class="sentence"><mark>Deep down</mark>, they sense that something is off.</p>
+                    </div>
+                    <div class="example-sentences">
+                        <p class="label">✏️ 예문</p>
+                        <div class="example">
+                            <p class="korean">마음 깊은 곳에서는 그 관계가 잘 안 되고 있다는 걸 알았어요.</p>
+                            <p class="english">→ Deep down, I knew the relationship wasn't working.</p>
+                        </div>
+                        <div class="example">
+                            <p class="korean">그녀는 겉으로는 웃었지만, 마음 깊은 곳에서는 슬펐어요.</p>
+                            <p class="english">→ She smiled on the outside, but deep down, she was sad.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 표현 3 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">3</span>
+                        <span class="expression-keyword">talk oneself out of ~ing</span>
+                        <span class="expression-meaning">~하지 않도록 스스로를 설득하다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <p class="label">📍 오늘의 문장</p>
+                        <p class="sentence">To avoid the discomfort of reality, we <mark>talk ourselves out of</mark> seeing it.</p>
+                    </div>
+                    <div class="example-sentences">
+                        <p class="label">✏️ 예문</p>
+                        <div class="example">
+                            <p class="korean">포기하려고 했지만 그만두지 않도록 스스로를 설득했어요.</p>
+                            <p class="english">→ I almost quit, but I talked myself out of giving up.</p>
+                        </div>
+                        <div class="example">
+                            <p class="korean">그녀는 그 일자리에 지원하지 않도록 스스로를 설득했어요.</p>
+                            <p class="english">→ She talked herself out of applying for the job.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 표현 4 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">4</span>
+                        <span class="expression-keyword">not A, but B</span>
+                        <span class="expression-meaning">A가 아니라 B</span>
+                    </div>
+                    <div class="original-sentence">
+                        <p class="label">📍 오늘의 문장</p>
+                        <p class="sentence">What we truly need is <mark>not</mark> self-affirmation, <mark>but</mark> self-compassion.</p>
+                    </div>
+                    <div class="example-sentences">
+                        <p class="label">✏️ 예문</p>
+                        <div class="example">
+                            <p class="korean">중요한 건 얼마나 빨리 가느냐가 아니라 얼마나 멀리 왔느냐예요.</p>
+                            <p class="english">→ What matters is not how fast you go, but how far you've come.</p>
+                        </div>
+                        <div class="example">
+                            <p class="korean">성공은 돈이 아니라 행복이에요.</p>
+                            <p class="english">→ Success is not about money, but about happiness.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 표현 5 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">5</span>
+                        <span class="expression-keyword">only when ~ can you ~</span>
+                        <span class="expression-meaning">~해야만 ~할 수 있다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <p class="label">📍 오늘의 문장</p>
+                        <p class="sentence">Because <mark>only when</mark> you face the problem <mark>can you</mark> solve it.</p>
+                    </div>
+                    <div class="example-sentences">
+                        <p class="label">✏️ 예문</p>
+                        <div class="example">
+                            <p class="korean">자신을 비교하는 걸 멈춰야만 진정으로 행복할 수 있어요.</p>
+                            <p class="english">→ Only when you stop comparing yourself can you truly be happy.</p>
+                        </div>
+                        <div class="example">
+                            <p class="korean">실패를 받아들여야만 성장할 수 있어요.</p>
+                            <p class="english">→ Only when you accept failure can you grow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="showTab(3)">← 이전</button>
+                <button class="nav-btn next" onclick="showTab(5)">다음 단계 →</button>
+            </div>
+        </div>
+        
+        <!-- ========== TAB 5: QUIZ ========== -->
+        <div class="tab-content" id="tab5">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">🎯</div>
+                    <h2>퀴즈</h2>
+                </div>
+                
+                <p class="quiz-type-title">📝 빈칸 채우기</p>
+                
+                <div class="quiz-item">
+                    <p class="quiz-question">
+                        <span class="num-badge">1</span>
+                        ____________, it's the tension you feel when your actions and beliefs don't match.
+                    </p>
+                    <p class="quiz-hint">(쉽게 말해, 행동과 믿음이 일치하지 않을 때 느끼는 긴장감이에요.)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <p class="quiz-question">
+                        <span class="num-badge">2</span>
+                        ____________, I knew something was wrong.
+                    </p>
+                    <p class="quiz-hint">(마음 깊은 곳에서는 뭔가 잘못됐다는 걸 알았어.)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <p class="quiz-question">
+                        <span class="num-badge">3</span>
+                        She ____________ applying for the job.
+                    </p>
+                    <p class="quiz-hint">(그녀는 그 일자리에 지원하지 않도록 스스로를 설득했어.)</p>
+                </div>
+                
+                <p class="quiz-type-title" style="margin-top: 25px;">✍️ 영작하기</p>
+                
+                <div class="quiz-item">
+                    <p class="quiz-question">
+                        <span class="num-badge">4</span>
+                        중요한 건 돈이 아니라 행복이에요.
+                    </p>
+                </div>
+                
+                <div class="quiz-item">
+                    <p class="quiz-question">
+                        <span class="num-badge">5</span>
+                        자신을 비교하는 걸 멈춰야만 진정으로 행복할 수 있어요.
+                    </p>
+                </div>
+                
+                <p class="quiz-type-title" style="margin-top: 25px;">🔘 객관식</p>
+                
+                <div class="quiz-item">
+                    <p class="quiz-question">
+                        <span class="num-badge">6</span>
+                        "문제를 마주했을 때만 그것을 해결할 수 있다"를 영어로 바르게 표현한 것은?
+                    </p>
+                    <p class="quiz-option">a) Only when you face the problem you can solve it.</p>
+                    <p class="quiz-option">b) Only when you face the problem can you solve it.</p>
+                    <p class="quiz-option">c) When only you face the problem can you solve it.</p>
+                </div>
+                
+                <details class="answer-section">
+                    <summary>📝 정답 확인</summary>
+                    <div class="answer-content" style="flex-direction: column;">
+                        <div class="answer-item" style="width: 100%;"><b>1.</b> Put simply</div>
+                        <div class="answer-item" style="width: 100%;"><b>2.</b> Deep down</div>
+                        <div class="answer-item" style="width: 100%;"><b>3.</b> talked herself out of</div>
+                        <div class="answer-item" style="width: 100%;"><b>4.</b> What matters is not money, but happiness.</div>
+                        <div class="answer-item" style="width: 100%;"><b>5.</b> Only when you stop comparing yourself can you truly be happy.</div>
+                        <div class="answer-item" style="width: 100%;"><b>6.</b> b) - only when이 문두에 오면 주어-조동사 도치 필수</div>
+                    </div>
+                </details>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="showTab(4)">← 이전</button>
+                <button class="nav-btn next" onclick="showTab(1)">처음부터 →</button>
+            </div>
+        </div>
+        
+        <!-- 저작권 -->
+        <div class="copyright">
+            이 콘텐츠는 개인 학습 목적으로만 이용하실 수 있습니다.<br>
+            콘텐츠 이용에 관한 문의: newpple@naver.com
+        </div>
+    </div>
+    
+    <script>
+        function showTab(n) {
+            // 모든 탭 숨기기
+            var tabs = document.querySelectorAll('.tab-content');
+            var btns = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            btns.forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            
+            // 선택한 탭 보이기
+            document.getElementById('tab' + n).classList.add('active');
+            btns[n-1].classList.add('active');
+            
+            // 스크롤 맨 위로
+            window.scrollTo(0, 0);
+        }
+        
+        function playAt(seconds) {
+            var iframe = document.getElementById('ytplayer');
+            iframe.src = 'https://www.youtube.com/embed/udvsSnrbqhM?start=' + seconds + '&autoplay=1';
+        }
+    </script>
+</body>
+</html>
