@@ -174,7 +174,18 @@
         /* DICTATION */
         .dictation-item { padding: 15px 0; border-bottom: 1px solid #f3f4f6; }
         .dictation-item:last-child { border-bottom: none; }
-        .dictation-sentence { font-size: 15px; line-height: 2.2; color: #374151; }
+        .dictation-sentence { 
+            font-size: 15px; 
+            line-height: 2.2; 
+            color: #374151;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .dictation-sentence .speaker-btn {
+            margin-left: auto;
+            flex-shrink: 0;
+        }
         .blank-input {
             border: none;
             border-bottom: 2px solid #3b82f6;
@@ -426,7 +437,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">1</span>
-                        "I am enough." "I am doing well." "I <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(1)</sup> to be loved."
+                        <span class="dict-text">"I am enough." "I am doing well." "I <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(1)</sup> to be loved."</span>
                         <button class="speaker-btn" onclick="playAtDict(5)">🔊</button>
                     </p>
                 </div>
@@ -434,7 +445,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">2</span>
-                        People say that if you <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(2)</sup> these words every day, your life will change.
+                        <span class="dict-text">People say that if you <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(2)</sup> these words every day, your life will change.</span>
                         <button class="speaker-btn" onclick="playAtDict(12)">🔊</button>
                     </p>
                 </div>
@@ -442,7 +453,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">4</span>
-                        But today, I <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(3)</sup> talk about something a little uncomfortable.
+                        <span class="dict-text">But today, I <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(3)</sup> talk about something a little uncomfortable.</span>
                         <button class="speaker-btn" onclick="playAtDict(24)">🔊</button>
                     </p>
                 </div>
@@ -450,7 +461,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">7</span>
-                        <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(4)</sup>, it is the tension you feel when your actions and beliefs do not match.
+                        <span class="dict-text"><input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(4)</sup>, it is the tension you feel when your actions and beliefs do not match.</span>
                         <button class="speaker-btn" onclick="playAtDict(44)">🔊</button>
                     </p>
                 </div>
@@ -458,7 +469,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">9</span>
-                        <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(5)</sup>, they sense that something is off.
+                        <span class="dict-text"><input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(5)</sup>, they sense that something is off.</span>
                         <button class="speaker-btn" onclick="playAtDict(60)">🔊</button>
                     </p>
                 </div>
@@ -466,7 +477,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">11</span>
-                        So <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(6)</sup> finding the cause, we try to bury the feeling quickly.
+                        <span class="dict-text">So <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(6)</sup> finding the cause, we try to bury the feeling quickly.</span>
                         <button class="speaker-btn" onclick="playAtDict(72)">🔊</button>
                     </p>
                 </div>
@@ -474,7 +485,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">17</span>
-                        To avoid the discomfort of reality, we <input type="text" class="blank-input" style="min-width:150px;" maxlength="25"><sup class="blank-num">(7)</sup> seeing it.
+                        <span class="dict-text">To avoid the discomfort of reality, we <input type="text" class="blank-input" style="min-width:150px;" maxlength="25"><sup class="blank-num">(7)</sup> seeing it.</span>
                         <button class="speaker-btn" onclick="playAtDict(107)">🔊</button>
                     </p>
                 </div>
@@ -482,7 +493,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">20</span>
-                        What we truly need is <input type="text" class="blank-input" maxlength="10"><sup class="blank-num">(8)</sup> self-affirmation, <input type="text" class="blank-input" maxlength="10"><sup class="blank-num">(9)</sup> self-compassion.
+                        <span class="dict-text">What we truly need is <input type="text" class="blank-input" maxlength="10"><sup class="blank-num">(8)</sup> self-affirmation, <input type="text" class="blank-input" maxlength="10"><sup class="blank-num">(9)</sup> self-compassion.</span>
                         <button class="speaker-btn" onclick="playAtDict(127)">🔊</button>
                     </p>
                 </div>
@@ -490,7 +501,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">26</span>
-                        It means accepting your flaws without <input type="text" class="blank-input" maxlength="20"><sup class="blank-num">(10)</sup>.
+                        <span class="dict-text">It means accepting your flaws without <input type="text" class="blank-input" maxlength="20"><sup class="blank-num">(10)</sup>.</span>
                         <button class="speaker-btn" onclick="playAtDict(172)">🔊</button>
                     </p>
                 </div>
@@ -498,7 +509,7 @@
                 <div class="dictation-item">
                     <p class="dictation-sentence">
                         <span class="num-badge">30</span>
-                        Because <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(11)</sup> you face the problem <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(12)</sup> solve it.
+                        <span class="dict-text">Because <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(11)</sup> you face the problem <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(12)</sup> solve it.</span>
                         <button class="speaker-btn" onclick="playAtDict(198)">🔊</button>
                     </p>
                 </div>
