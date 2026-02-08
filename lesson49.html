@@ -87,6 +87,7 @@
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 20px;
+            cursor: pointer;
         }
         .youtube-thumbnail img { width: 100%; display: block; }
         .youtube-thumbnail .play-overlay {
@@ -387,12 +388,12 @@
                     <h2>자막 없이 듣기</h2>
                 </div>
                 
-                <a href="https://www.youtube.com/watch?v=udvsSnrbqhM" target="_blank" class="youtube-thumbnail">
+                <div class="youtube-thumbnail" id="thumb1" onclick="playVideo('thumb1')">
                     <img src="https://img.youtube.com/vi/udvsSnrbqhM/maxresdefault.jpg" alt="영상 썸네일">
                     <div class="play-overlay">
                         <div class="play-btn"></div>
                     </div>
-                </a>
+                </div>
                 
                 <div class="guide-text">
                     자막 없이 영상을 끝까지 들어보세요.<br>
@@ -415,12 +416,12 @@
                     <span class="section-subtitle">빈칸을 채워보세요</span>
                 </div>
                 
-                <a href="https://www.youtube.com/watch?v=udvsSnrbqhM" target="_blank" class="youtube-thumbnail">
+                <div class="youtube-thumbnail" id="thumb2" onclick="playVideo('thumb2')">
                     <img src="https://img.youtube.com/vi/udvsSnrbqhM/maxresdefault.jpg" alt="영상 썸네일">
                     <div class="play-overlay">
                         <div class="play-btn"></div>
                     </div>
-                </a>
+                </div>
                 
                 <div class="dictation-item">
                     <p class="dictation-sentence">
@@ -1122,6 +1123,14 @@
             document.getElementById('tab' + n).classList.add('active');
             btns[n-1].classList.add('active');
             window.scrollTo(0, 0);
+        }
+        
+        function playVideo(thumbId) {
+            var thumb = document.getElementById(thumbId);
+            var container = document.createElement('div');
+            container.className = 'video-container';
+            container.innerHTML = '<iframe src="https://www.youtube.com/embed/udvsSnrbqhM?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            thumb.parentNode.replaceChild(container, thumb);
         }
         
         function playAt(seconds) {
