@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            overflow-x: hidden;
+        }
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background: #ffffff;
@@ -523,11 +526,12 @@
                 <div class="section-title">
                     <div class="section-icon">📖</div>
                     <h2>영문 스크립트</h2>
-                    <span class="section-subtitle">🔊 클릭하면 재생</span>
+                    <span class="section-subtitle">🔊 클릭하면 유튜브에서 재생</span>
                 </div>
                 
-                <div class="video-container">
-                    <iframe id="ytplayer" src="https://www.youtube.com/embed/udvsSnrbqhM?enablejsapi=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="youtube-thumbnail" id="thumb3" onclick="playVideo('thumb3')">
+                    <img src="https://img.youtube.com/vi/udvsSnrbqhM/maxresdefault.jpg" alt="썸네일">
+                    <div class="play-overlay"><div class="play-btn"></div></div>
                 </div>
                 
                 <div class="script-item">
@@ -1116,11 +1120,20 @@
     
     <script>
         var videoId = 'udvsSnrbqhM';
+        var player = null;
+        
+        // YouTube IFrame API 로드
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
         function showTab(n) {
-            // STEP1, DICTATION 썸네일로 복원
+            // 모든 탭의 video-container를 썸네일로 복원
             restoreThumb('tab1', 'thumb1');
             restoreThumb('tab2', 'thumb2');
+            restoreThumb('tab3', 'thumb3');
+            player = null; // 플레이어 리셋
             
             // 탭 전환
             var tabs = document.querySelectorAll('.tab-content');
@@ -1150,14 +1163,43 @@
             if (!thumb) return;
             var container = document.createElement('div');
             container.className = 'video-container';
-            container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-            thumb.parentNode.replaceChild(container, thumb);
+            
+            // STEP 2 (thumb3)는 API용 div로 생성
+            if (thumbId === 'thumb3') {
+                container.innerHTML = '<div id="ytplayer"></div>';
+                thumb.parentNode.replaceChild(container, thumb);
+                // API 플레이어 생성
+                player = new YT.Player('ytplayer', {
+                    videoId: videoId,
+                    playerVars: { 'autoplay': 1, 'rel': 0 },
+                    events: { 'onReady': function(e) { e.target.playVideo(); } }
+                });
+            } else {
+                container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                thumb.parentNode.replaceChild(container, thumb);
+            }
         }
         
+        // 🔊 버튼 - seekTo로 광고 없이 이동
         function playAt(seconds) {
-            var iframe = document.getElementById('ytplayer');
-            if (iframe) {
-                iframe.src = 'https://www.youtube.com/embed/' + videoId + '?start=' + seconds + '&autoplay=1&rel=0';
+            var thumb = document.getElementById('thumb3');
+            
+            if (thumb) {
+                // 썸네일이면 먼저 플레이어 생성
+                var container = document.createElement('div');
+                container.className = 'video-container';
+                container.innerHTML = '<div id="ytplayer"></div>';
+                thumb.parentNode.replaceChild(container, thumb);
+                
+                player = new YT.Player('ytplayer', {
+                    videoId: videoId,
+                    playerVars: { 'autoplay': 1, 'rel': 0, 'start': seconds },
+                    events: { 'onReady': function(e) { e.target.playVideo(); } }
+                });
+            } else if (player && player.seekTo) {
+                // 이미 재생 중이면 seekTo로 이동 (광고 X)
+                player.seekTo(seconds, true);
+                player.playVideo();
             }
         }
         
