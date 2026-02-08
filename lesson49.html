@@ -7,9 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
-            overflow-x: hidden;
-        }
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background: #ffffff;
@@ -1129,6 +1126,11 @@
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
         function showTab(n) {
+            // 영상 멈추기
+            if (player && player.pauseVideo) {
+                player.pauseVideo();
+            }
+            
             // 모든 탭의 video-container를 썸네일로 복원
             restoreThumb('tab1', 'thumb1');
             restoreThumb('tab2', 'thumb2');
