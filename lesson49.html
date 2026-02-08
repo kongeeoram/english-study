@@ -124,8 +124,7 @@
             padding-bottom: 56.25%;
             margin-bottom: 20px;
         }
-        .video-container iframe,
-        .video-container #ytplayer {
+        .video-container iframe {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             border: none;
@@ -528,7 +527,7 @@
                 </div>
                 
                 <div class="video-container">
-                    <div id="ytplayer"></div>
+                    <iframe id="ytplayer" src="https://www.youtube.com/embed/udvsSnrbqhM?enablejsapi=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 
                 <div class="script-item">
@@ -1115,35 +1114,15 @@
         </div>
     </div>
     
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         var videoId = 'udvsSnrbqhM';
-        var player;
-        
-        // YouTube API 준비되면 플레이어 생성
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('ytplayer', {
-                height: '100%',
-                width: '100%',
-                videoId: videoId,
-                playerVars: {
-                    'rel': 0,
-                    'modestbranding': 1
-                }
-            });
-        }
         
         function showTab(n) {
-            // 1. STEP1, DICTATION의 video-container를 썸네일로 복원
+            // STEP1, DICTATION 썸네일로 복원
             restoreThumb('tab1', 'thumb1');
             restoreThumb('tab2', 'thumb2');
             
-            // 2. STEP2 플레이어 멈추기
-            if (player && player.pauseVideo) {
-                player.pauseVideo();
-            }
-            
-            // 3. 탭 전환
+            // 탭 전환
             var tabs = document.querySelectorAll('.tab-content');
             var btns = document.querySelectorAll('.tab-btn');
             tabs.forEach(function(tab) { tab.classList.remove('active'); });
@@ -1175,11 +1154,10 @@
             thumb.parentNode.replaceChild(container, thumb);
         }
         
-        // STEP 2용 - seekTo로 광고 없이 타임라인 이동
         function playAt(seconds) {
-            if (player && player.seekTo) {
-                player.seekTo(seconds, true);
-                player.playVideo();
+            var iframe = document.getElementById('ytplayer');
+            if (iframe) {
+                iframe.src = 'https://www.youtube.com/embed/' + videoId + '?start=' + seconds + '&autoplay=1&rel=0';
             }
         }
         
