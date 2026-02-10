@@ -25,34 +25,19 @@
 <body>
     <h1>YouTube 광고 테스트</h1>
     
-    <h2>테스트 1: 순수 iframe (API 없음)</h2>
+    <h2>테스트 1: 순수 iframe</h2>
     <div class="video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/G9jAbYxkiHI" 
-            allowfullscreen>
-        </iframe>
+        <iframe src="https://www.youtube.com/embed/G9jAbYxkiHI" allowfullscreen></iframe>
     </div>
     
-    <h2>테스트 2: iframe + autoplay</h2>
+    <h2>테스트 2: iframe + rel=0</h2>
     <div class="video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/G9jAbYxkiHI?autoplay=0&rel=0" 
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-        </iframe>
+        <iframe src="https://www.youtube.com/embed/G9jAbYxkiHI?rel=0" allowfullscreen></iframe>
     </div>
     
     <h2>테스트 3: iframe + origin</h2>
     <div class="video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/G9jAbYxkiHI?rel=0&origin=https://kongeeoram.github.io" 
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-        </iframe>
+        <iframe src="https://www.youtube.com/embed/G9jAbYxkiHI?rel=0&origin=https://kongeeoram.github.io" allowfullscreen></iframe>
     </div>
-    
-    <p style="margin-top: 40px; color: #666;">
-        각 영상을 재생해서 광고가 나오는지 확인해주세요.
-    </p>
 </body>
 </html>
