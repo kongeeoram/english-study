@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만 기억하는 빚 - 영어 학습자료</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        /* 헤더 */
+        .header { text-align: center; margin-bottom: 30px; padding-top: 20px; }
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header p { color: #94a3b8; font-size: 14px; }
+        
+        /* 탭 메뉴 */
+        .tab-menu {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            background: rgba(30, 41, 59, 0.8);
+            padding: 8px;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px 8px;
+            background: transparent;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .tab-btn:hover { color: #a78bfa; background: rgba(139, 92, 246, 0.1); }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: #fff;
+            font-weight: 700;
+        }
+        .tab-btn small { display: block; margin-top: 3px; font-size: 9px; }
+        
+        /* 탭 콘텐츠 */
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 카드 */
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .section-title h2 { font-size: 18px; font-weight: 600; color: #f1f5f9; }
+        
+        /* 유튜브 영상 */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* DICTATION */
+        .dictation-item {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        
+        .dictation-sentence {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        .num-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        
+        .dict-text {
+            flex: 1;
+            color: #cbd5e1;
+        }
+        
+        .blank-input {
+            width: 100px;
+            padding: 5px 10px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px dashed rgba(139, 92, 246, 0.5);
+            border-radius: 5px;
+            color: #a78bfa;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .blank-input:focus {
+            outline: none;
+            border-color: #a78bfa;
+            background: rgba(139, 92, 246, 0.2);
+        }
+        
+        .blank-num {
+            color: #f97316;
+            font-size: 11px;
+            margin-left: 2px;
+        }
+        
+        /* 정답 토글 */
+        .answer-toggle {
+            margin-top: 20px;
+        }
+        
+        .answer-toggle summary {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            text-align: center;
+        }
+        
+        .answer-toggle summary::-webkit-details-marker { display: none; }
+        
+        .answer-content {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .answer-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            font-size: 14px;
+        }
+        
+        .answer-item:last-child { border-bottom: none; }
+        .answer-num { color: #f97316; font-weight: 700; margin-right: 10px; }
+        .answer-text { color: #22d3ee; }
+        
+        /* STEP 2 스크립트 */
+        .script-item {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        
+        .script-main {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .script-text {
+            flex: 1;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #e2e8f0;
+        }
+        
+        .expression-toggle {
+            margin-top: 10px;
+        }
+        
+        .expression-toggle summary {
+            color: #a78bfa;
+            font-size: 13px;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+        
+        .expression-content {
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 8px;
+        }
+        
+        .vocab-item {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+        
+        .vocab-item b { color: #22d3ee; }
+        
+        .grammar-item {
+            font-size: 13px;
+            color: #fbbf24;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        /* STEP 3 표현 카드 */
+        .expression-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .expression-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .expression-num {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #f97316, #ef4444);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .expression-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #22d3ee;
+        }
+        
+        .expression-meaning {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-left: auto;
+        }
+        
+        .original-sentence {
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .original-sentence .label {
+            font-size: 12px;
+            color: #06b6d4;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .original-sentence p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #e2e8f0;
+        }
+        
+        .original-sentence mark {
+            background: rgba(249, 115, 22, 0.3);
+            color: #fbbf24;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .example-box {
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .example-box .label {
+            font-size: 12px;
+            color: #a78bfa;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .example-ko {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+        
+        .example-en {
+            font-size: 15px;
+            color: #e2e8f0;
+            margin-bottom: 12px;
+        }
+        
+        .example-en:last-child { margin-bottom: 0; }
+        
+        /* QUIZ */
+        .quiz-item {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        
+        .quiz-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            margin-right: 12px;
+        }
+        
+        .quiz-question {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #e2e8f0;
+            display: inline;
+        }
+        
+        .quiz-input {
+            width: 120px;
+            padding: 5px 10px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px dashed rgba(139, 92, 246, 0.5);
+            border-radius: 5px;
+            color: #a78bfa;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .quiz-hint {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 10px;
+            margin-left: 40px;
+        }
+        
+        .quiz-options {
+            margin-top: 15px;
+            margin-left: 40px;
+        }
+        
+        .quiz-option {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .quiz-option:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+        
+        .quiz-option.selected {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: #06b6d4;
+            color: #22d3ee;
+        }
+        
+        .quiz-answer {
+            margin-top: 25px;
+        }
+        
+        .quiz-answer summary {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            text-align: center;
+        }
+        
+        .quiz-answer summary::-webkit-details-marker { display: none; }
+        
+        .quiz-answer-content {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+        
+        .quiz-answer-content p {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            font-size: 14px;
+            color: #e2e8f0;
+        }
+        
+        .quiz-answer-content p:last-child { border-bottom: none; }
+        .quiz-answer-content b { color: #22d3ee; }
+        
+        /* 중앙 메시지 */
+        .center-msg {
+            text-align: center;
+            padding: 30px 0;
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        /* 저작권 */
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 12px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <div class="header">
+            <h1>나만 기억하는 빚</h1>
+            <p>A Debt Only I Remember</p>
+        </div>
+        
+        <!-- 탭 메뉴 -->
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="showTab(1)">STEP 1<small>자막없이</small></button>
+            <button class="tab-btn" onclick="showTab(2)">DICTATION<small>받아쓰기</small></button>
+            <button class="tab-btn" onclick="showTab(3)">STEP 2<small>스크립트</small></button>
+            <button class="tab-btn" onclick="showTab(4)">STEP 3<small>표현정리</small></button>
+            <button class="tab-btn" onclick="showTab(5)">QUIZ<small>퀴즈</small></button>
+        </div>
+        
+        <!-- STEP 1: 자막 없이 듣기 -->
+        <div class="tab-content active" id="tab1">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">🎧</div>
+                    <h2>자막 없이 듣기</h2>
+                </div>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/-wHZgunJExU?rel=0" allowfullscreen></iframe>
+                </div>
+                
+                <p class="center-msg">먼저 영상을 끝까지 들어보세요.<br>몇 개의 문장이 들리나요?</p>
+            </div>
+        </div>
+        
+        <!-- DICTATION: 받아쓰기 -->
+        <div class="tab-content" id="tab2">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">✍️</div>
+                    <h2>받아쓰기</h2>
+                </div>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/-wHZgunJExU?rel=0" allowfullscreen></iframe>
+                </div>
+                
+                <p class="center-msg">영상을 들으면서 빈칸을 채워보세요</p>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">2</span>
+                        <span class="dict-text">When someone <input type="text" class="blank-input"><sup class="blank-num">(1)</sup> me for a favor, I usually say yes.</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">6</span>
+                        <span class="dict-text">So I always <input type="text" class="blank-input"><sup class="blank-num">(2)</sup> saying, "Sure, no problem."</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">7</span>
+                        <span class="dict-text">But <input type="text" class="blank-input"><sup class="blank-num">(3)</sup>, I remember everything.</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">13</span>
+                        <span class="dict-text">In that moment, anger <input type="text" class="blank-input"><sup class="blank-num">(4)</sup> me.</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">15</span>
+                        <span class="dict-text">I even <input type="text" class="blank-input"><sup class="blank-num">(5)</sup> to help her with her work before.</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">16</span>
+                        <span class="dict-text">Without thinking, words <input type="text" class="blank-input"><sup class="blank-num">(6)</sup> my mouth.</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">20</span>
+                        <span class="dict-text">Someone on her team had suddenly left, so she had <input type="text" class="blank-input"><sup class="blank-num">(7)</sup>.</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">22</span>
+                        <span class="dict-text">The moment I heard that, I <input type="text" class="blank-input"><sup class="blank-num">(8)</sup>.</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">25</span>
+                        <span class="dict-text">I suddenly realized that every time I helped someone, I was <input type="text" class="blank-input"><sup class="blank-num">(9)</sup> in my mind.</span>
+                    </p>
+                </div>
+                
+                <div class="dictation-item">
+                    <p class="dictation-sentence">
+                        <span class="num-badge">34</span>
+                        <span class="dict-text">I also learned that only then can I truly help someone <input type="text" class="blank-input"><sup class="blank-num">(10)</sup>.</span>
+                    </p>
+                </div>
+                
+                <details class="answer-toggle">
+                    <summary>📝 정답 확인</summary>
+                    <div class="answer-content">
+                        <div class="answer-item"><span class="answer-num">(1)</span> <span class="answer-text">asks</span></div>
+                        <div class="answer-item"><span class="answer-num">(2)</span> <span class="answer-text">end up</span></div>
+                        <div class="answer-item"><span class="answer-num">(3)</span> <span class="answer-text">deep down</span></div>
+                        <div class="answer-item"><span class="answer-num">(4)</span> <span class="answer-text">rushed through</span></div>
+                        <div class="answer-item"><span class="answer-num">(5)</span> <span class="answer-text">stayed late</span></div>
+                        <div class="answer-item"><span class="answer-num">(6)</span> <span class="answer-text">slipped out of</span></div>
+                        <div class="answer-item"><span class="answer-num">(7)</span> <span class="answer-text">no bandwidth</span></div>
+                        <div class="answer-item"><span class="answer-num">(8)</span> <span class="answer-text">felt ashamed</span></div>
+                        <div class="answer-item"><span class="answer-num">(9)</span> <span class="answer-text">keeping a record</span></div>
+                        <div class="answer-item"><span class="answer-num">(10)</span> <span class="answer-text">from the heart</span></div>
+                    </div>
+                </details>
+            </div>
+        </div>
+        
+        <!-- STEP 2: 영문 스크립트 -->
+        <div class="tab-content" id="tab3">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">📖</div>
+                    <h2>영문 스크립트</h2>
+                </div>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/-wHZgunJExU?rel=0" allowfullscreen></iframe>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">1</span>
+                        <span class="script-text">I am not good at saying no.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>be good at</b> ~을 잘하다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">2</span>
+                        <span class="script-text">When someone asks me for a favor, I usually say yes.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>ask for a favor</b> 부탁하다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">3</span>
+                        <span class="script-text">Even if it costs me something. Even if I am tired.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>even if</b> 비록 ~일지라도</div>
+                            <div class="vocab-item"><b>cost</b> (대가를) 치르게 하다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">4</span>
+                        <span class="script-text">I do not really know why.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">5</span>
+                        <span class="script-text">It is just hard to say "no."</span>
+                    </div>
+                </div>
+                
+                <div class="script-item" style="border-left: 3px solid #f97316;">
+                    <div class="script-main">
+                        <span class="num-badge">6</span>
+                        <span class="script-text">So I always end up saying, "Sure, no problem."</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="grammar-item">💡 <b>end up ~ing</b> 결국 ~하게 되다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">7</span>
+                        <span class="script-text">But deep down, I remember everything.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>deep down</b> 마음 깊은 곳에서는</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">8</span>
+                        <span class="script-text">How hard things were for me when I helped them.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">9</span>
+                        <span class="script-text">Something happened at work today.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">10</span>
+                        <span class="script-text">I needed more people for my project, so I asked Mia for help.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">11</span>
+                        <span class="script-text">She thought about it for a moment and said,</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">12</span>
+                        <span class="script-text">"Sorry. I don't think I can right now."</span>
+                    </div>
+                </div>
+                
+                <div class="script-item" style="border-left: 3px solid #f97316;">
+                    <div class="script-main">
+                        <span class="num-badge">13</span>
+                        <span class="script-text">In that moment, anger rushed through me.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="grammar-item">💡 <b>rush through</b> 밀려오다, 휩쓸다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">14</span>
+                        <span class="script-text">I had always said yes to Mia's requests.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">15</span>
+                        <span class="script-text">I even stayed late to help her with her work before.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>stay late</b> 늦게까지 남다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item" style="border-left: 3px solid #f97316;">
+                    <div class="script-main">
+                        <span class="num-badge">16</span>
+                        <span class="script-text">Without thinking, words slipped out of my mouth.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="grammar-item">💡 <b>slip out of one's mouth</b> 말이 튀어나오다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">17</span>
+                        <span class="script-text">"I always helped you when you asked."</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">18</span>
+                        <span class="script-text">Mia looked genuinely surprised.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>genuinely</b> 진심으로, 진정으로</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">19</span>
+                        <span class="script-text">Then she slowly explained.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item" style="border-left: 3px solid #f97316;">
+                    <div class="script-main">
+                        <span class="num-badge">20</span>
+                        <span class="script-text">Someone on her team had suddenly left, so she had no bandwidth.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="grammar-item">💡 <b>have no bandwidth</b> 여력이 없다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">21</span>
+                        <span class="script-text">She also said she was sorry for not realizing how much I had done for her.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">22</span>
+                        <span class="script-text">The moment I heard that, I felt ashamed.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>feel ashamed</b> 부끄러움을 느끼다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">23</span>
+                        <span class="script-text">Why could I never say no all this time?</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">24</span>
+                        <span class="script-text">Why did I smile and say yes even when I was struggling?</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">25</span>
+                        <span class="script-text">I suddenly realized that every time I helped someone, I was keeping a record in my mind.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>keep a record</b> 기록을 남기다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">26</span>
+                        <span class="script-text">A debt only I knew about.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>debt</b> 빚</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">27</span>
+                        <span class="script-text">And I had been expecting to be paid back someday.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>pay back</b> 갚다, 보답하다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">28</span>
+                        <span class="script-text">But they probably thought I did it willingly.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>willingly</b> 기꺼이, 자발적으로</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">29</span>
+                        <span class="script-text">The weight in my heart was something I had created myself.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">30</span>
+                        <span class="script-text">Once I saw it that way, I felt a little lighter.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">31</span>
+                        <span class="script-text">From now on, I will be honest and say no when things are hard for me.</span>
+                    </div>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">32</span>
+                        <span class="script-text">Saying no is not a bad thing, and it does not ruin relationships.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>ruin</b> 망치다, 파괴하다</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">33</span>
+                        <span class="script-text">In fact, healthy relationships require honest refusals.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="vocab-item"><b>refusal</b> 거절</div>
+                        </div>
+                    </details>
+                </div>
+                
+                <div class="script-item" style="border-left: 3px solid #f97316;">
+                    <div class="script-main">
+                        <span class="num-badge">34</span>
+                        <span class="script-text">I also learned that only then can I truly help someone from the heart.</span>
+                    </div>
+                    <details class="expression-toggle">
+                        <summary>📖 표현 보기</summary>
+                        <div class="expression-content">
+                            <div class="grammar-item">💡 <b>from the heart</b> 진심으로</div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STEP 3: 주요표현 10개 -->
+        <div class="tab-content" id="tab4">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">📚</div>
+                    <h2>주요표현 10개</h2>
+                </div>
+                
+                <!-- 핵심표현 1 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">1</span>
+                        <span class="expression-title">end up ~ing</span>
+                        <span class="expression-meaning">결국 ~하게 되다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>So I always <mark>end up</mark> saying, "Sure, no problem."</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">나는 결국 그 일을 맡게 됐어.</p>
+                        <p class="example-en">→ I ended up taking on that task.</p>
+                        <p class="example-ko">우리는 결국 택시를 타게 됐어.</p>
+                        <p class="example-en">→ We ended up taking a taxi.</p>
+                    </div>
+                </div>
+                
+                <!-- 핵심표현 2 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">2</span>
+                        <span class="expression-title">rush through</span>
+                        <span class="expression-meaning">밀려오다, 휩쓸다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>In that moment, anger <mark>rushed through</mark> me.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">기쁨이 온몸으로 밀려왔다.</p>
+                        <p class="example-en">→ Joy rushed through my body.</p>
+                        <p class="example-ko">두려움이 나를 휩쓸었다.</p>
+                        <p class="example-en">→ Fear rushed through me.</p>
+                    </div>
+                </div>
+                
+                <!-- 핵심표현 3 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">3</span>
+                        <span class="expression-title">slip out of one's mouth</span>
+                        <span class="expression-meaning">말이 튀어나오다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>Without thinking, words <mark>slipped out of</mark> my mouth.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">그 비밀이 그냥 튀어나왔어.</p>
+                        <p class="example-en">→ The secret just slipped out of my mouth.</p>
+                        <p class="example-ko">말하기 전에 생각해. 말이 튀어나오게 두지 마.</p>
+                        <p class="example-en">→ Think before you speak. Don't let words slip out.</p>
+                    </div>
+                </div>
+                
+                <!-- 핵심표현 4 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">4</span>
+                        <span class="expression-title">have no bandwidth</span>
+                        <span class="expression-meaning">여력이 없다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>Someone on her team had suddenly left, so she <mark>had no bandwidth</mark>.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">지금은 새 프로젝트를 맡을 여력이 없어요.</p>
+                        <p class="example-en">→ I have no bandwidth for a new project right now.</p>
+                        <p class="example-ko">그녀는 이번 주에 여력이 없다고 했어.</p>
+                        <p class="example-en">→ She said she has no bandwidth this week.</p>
+                    </div>
+                </div>
+                
+                <!-- 핵심표현 5 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">5</span>
+                        <span class="expression-title">from the heart</span>
+                        <span class="expression-meaning">진심으로</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>I also learned that only then can I truly help someone <mark>from the heart</mark>.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">그 사과는 진심에서 나온 거야.</p>
+                        <p class="example-en">→ That apology came from the heart.</p>
+                        <p class="example-ko">진심으로 감사드립니다.</p>
+                        <p class="example-en">→ I thank you from the heart.</p>
+                    </div>
+                </div>
+                
+                <!-- 추가표현 6 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">6</span>
+                        <span class="expression-title">ask for a favor</span>
+                        <span class="expression-meaning">부탁하다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>When someone <mark>asks</mark> me <mark>for a favor</mark>, I usually say yes.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">부탁 하나 해도 될까요?</p>
+                        <p class="example-en">→ Can I ask you for a favor?</p>
+                        <p class="example-ko">그가 나에게 부탁을 했어.</p>
+                        <p class="example-en">→ He asked me for a favor.</p>
+                    </div>
+                </div>
+                
+                <!-- 추가표현 7 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">7</span>
+                        <span class="expression-title">deep down</span>
+                        <span class="expression-meaning">마음 깊은 곳에서는</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>But <mark>deep down</mark>, I remember everything.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">마음 깊은 곳에서는 그게 옳은 일이라는 걸 알아.</p>
+                        <p class="example-en">→ Deep down, I know it's the right thing to do.</p>
+                        <p class="example-ko">그녀는 속으로는 두려워했어.</p>
+                        <p class="example-en">→ She was scared deep down.</p>
+                    </div>
+                </div>
+                
+                <!-- 추가표현 8 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">8</span>
+                        <span class="expression-title">stay late</span>
+                        <span class="expression-meaning">늦게까지 남다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>I even <mark>stayed late</mark> to help her with her work before.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">어젯밤 야근했어요.</p>
+                        <p class="example-en">→ I stayed late at work last night.</p>
+                        <p class="example-ko">마감 맞추려고 늦게까지 남아야 했어.</p>
+                        <p class="example-en">→ I had to stay late to meet the deadline.</p>
+                    </div>
+                </div>
+                
+                <!-- 추가표현 9 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">9</span>
+                        <span class="expression-title">feel ashamed</span>
+                        <span class="expression-meaning">부끄러움을 느끼다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>The moment I heard that, I <mark>felt ashamed</mark>.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">내 행동이 부끄러웠어.</p>
+                        <p class="example-en">→ I felt ashamed of my behavior.</p>
+                        <p class="example-ko">그에게 부끄러움을 느꼈어.</p>
+                        <p class="example-en">→ I felt ashamed in front of him.</p>
+                    </div>
+                </div>
+                
+                <!-- 추가표현 10 -->
+                <div class="expression-card">
+                    <div class="expression-header">
+                        <span class="expression-num">10</span>
+                        <span class="expression-title">keep a record</span>
+                        <span class="expression-meaning">기록을 남기다</span>
+                    </div>
+                    <div class="original-sentence">
+                        <div class="label">📍 오늘의 문장</div>
+                        <p>I suddenly realized that every time I helped someone, I was <mark>keeping a record</mark> in my mind.</p>
+                    </div>
+                    <div class="example-box">
+                        <div class="label">✏️ 예문</div>
+                        <p class="example-ko">지출 기록을 남기고 있어요.</p>
+                        <p class="example-en">→ I'm keeping a record of my expenses.</p>
+                        <p class="example-ko">모든 회의 내용을 기록해 두세요.</p>
+                        <p class="example-en">→ Keep a record of all meetings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- QUIZ -->
+        <div class="tab-content" id="tab5">
+            <div class="card">
+                <div class="section-title">
+                    <div class="section-icon">✏️</div>
+                    <h2>퀴즈</h2>
+                </div>
+                
+                <p class="center-msg">오늘 배운 표현을 테스트해보세요!</p>
+                
+                <!-- 빈칸 채우기 -->
+                <div class="quiz-item">
+                    <span class="quiz-num">1</span>
+                    <p class="quiz-question">So I always <input type="text" class="quiz-input"> saying, "Sure, no problem."</p>
+                    <p class="quiz-hint">(그래서 나는 항상 "그래, 문제없어"라고 말하게 돼.)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">2</span>
+                    <p class="quiz-question">In that moment, anger <input type="text" class="quiz-input"> me.</p>
+                    <p class="quiz-hint">(그 순간 화가 밀려왔다.)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">3</span>
+                    <p class="quiz-question">Without thinking, words <input type="text" class="quiz-input"> my mouth.</p>
+                    <p class="quiz-hint">(생각도 없이 말이 튀어나왔다.)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">4</span>
+                    <p class="quiz-question">She had <input type="text" class="quiz-input"> this week.</p>
+                    <p class="quiz-hint">(그녀는 이번 주에 여력이 없었다.)</p>
+                </div>
+                
+                <!-- 영작하기 -->
+                <div class="quiz-item">
+                    <span class="quiz-num">5</span>
+                    <p class="quiz-question">"진심으로 감사드립니다"를 영어로?</p>
+                    <p class="quiz-hint">(from the heart 사용)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">6</span>
+                    <p class="quiz-question">"부탁 하나 해도 될까요?"를 영어로?</p>
+                    <p class="quiz-hint">(ask for a favor 사용)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">7</span>
+                    <p class="quiz-question">"마음 깊은 곳에서는 그게 옳은 일이라는 걸 알아"를 영어로?</p>
+                    <p class="quiz-hint">(deep down 사용)</p>
+                </div>
+                
+                <!-- 객관식 -->
+                <div class="quiz-item">
+                    <span class="quiz-num">8</span>
+                    <p class="quiz-question">"end up ~ing"의 의미는?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this)">a) 시작하다</div>
+                        <div class="quiz-option" onclick="selectOption(this)">b) 결국 ~하게 되다</div>
+                        <div class="quiz-option" onclick="selectOption(this)">c) 끝내다</div>
+                        <div class="quiz-option" onclick="selectOption(this)">d) 포기하다</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">9</span>
+                    <p class="quiz-question">다음 중 올바른 문장은?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this)">a) I stayed late for meet the deadline.</div>
+                        <div class="quiz-option" onclick="selectOption(this)">b) I stayed late to meet the deadline.</div>
+                        <div class="quiz-option" onclick="selectOption(this)">c) I stayed lately to meet the deadline.</div>
+                        <div class="quiz-option" onclick="selectOption(this)">d) I late stayed to meet the deadline.</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">10</span>
+                    <p class="quiz-question">"have no bandwidth"는 어떤 상황에서 쓸까요?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this)">a) 인터넷 속도가 느릴 때</div>
+                        <div class="quiz-option" onclick="selectOption(this)">b) 시간이나 여력이 없을 때</div>
+                        <div class="quiz-option" onclick="selectOption(this)">c) 돈이 부족할 때</div>
+                        <div class="quiz-option" onclick="selectOption(this)">d) 음악을 들을 때</div>
+                    </div>
+                </div>
+                
+                <details class="quiz-answer">
+                    <summary>📝 정답 확인</summary>
+                    <div class="quiz-answer-content">
+                        <p><b>1.</b> end up</p>
+                        <p><b>2.</b> rushed through</p>
+                        <p><b>3.</b> slipped out of</p>
+                        <p><b>4.</b> no bandwidth</p>
+                        <p><b>5.</b> I thank you from the heart.</p>
+                        <p><b>6.</b> Can I ask you for a favor?</p>
+                        <p><b>7.</b> Deep down, I know it's the right thing to do.</p>
+                        <p><b>8.</b> b) 결국 ~하게 되다</p>
+                        <p><b>9.</b> b) I stayed late to meet the deadline.</p>
+                        <p><b>10.</b> b) 시간이나 여력이 없을 때</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+        
+        <!-- 저작권 -->
+        <div class="copyright">
+            이 콘텐츠의 저작권은 원저작자에게 있습니다.<br>
+            학습 목적으로만 사용해주세요.
+        </div>
+    </div>
+    
+    <script>
+        // 탭 전환
+        function showTab(n) {
+            var tabs = document.querySelectorAll('.tab-content');
+            var btns = document.querySelectorAll('.tab-btn');
+            tabs.forEach(function(tab) { tab.classList.remove('active'); });
+            btns.forEach(function(btn) { btn.classList.remove('active'); });
+            document.getElementById('tab' + n).classList.add('active');
+            btns[n-1].classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        // 퀴즈 객관식 선택
+        function selectOption(el) {
+            var options = el.parentNode.querySelectorAll('.quiz-option');
+            options.forEach(function(opt) { opt.classList.remove('selected'); });
+            el.classList.add('selected');
+        }
+    </script>
+</body>
+</html>
