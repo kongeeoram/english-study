@@ -3,1142 +3,1490 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>막연한 자기긍정의 위험성 - 영어 학습자료</title>
+    <title>스캔들 연예인의 호화로운 근황 - 영어 학습자료</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: #ffffff;
+            background: linear-gradient(135deg, #f0fdfa 0%, #faf5ff 100%);
+            min-height: 100vh;
             color: #374151;
             padding: 20px;
-            line-height: 1.6;
         }
+        
         .container { max-width: 800px; margin: 0 auto; }
         
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-            padding: 20px;
+        /* 헤더 */
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #0891b2, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: #1f2937; }
-        .header p { font-size: 14px; color: #6b7280; }
+        .header p { color: #6b7280; font-size: 14px; }
         
+        /* 탭 메뉴 */
         .tab-menu {
             display: flex;
             gap: 5px;
             margin-bottom: 20px;
-            background: #f3f4f6;
+            background: rgba(255,255,255,0.8);
             padding: 8px;
-            border-radius: 12px;
+            border-radius: 15px;
+            overflow-x: auto;
         }
+        
         .tab-btn {
             flex: 1;
-            padding: 12px 8px;
+            min-width: 55px;
+            padding: 10px 6px;
             background: transparent;
-            color: #6b7280;
-            font-size: 12px;
+            border: none;
+            color: #9ca3af;
+            font-size: 11px;
             font-weight: 500;
             cursor: pointer;
-            border-radius: 8px;
-            border: none;
-            transition: all 0.3s;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
         }
-        .tab-btn.active { background: #1f2937; color: #fff; font-weight: 600; }
-        .tab-btn small { display: block; font-weight: 400; margin-top: 2px; font-size: 10px; }
         
-        .tab-content { display: none; }
+        .tab-btn:hover { color: #7c3aed; background: rgba(139,92,246,0.1); }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: #fff;
+            font-weight: 700;
+        }
+        
+        .tab-btn.quiz-btn { border: 1px solid #f97316; color: #f97316; }
+        .tab-btn.quiz-btn.active { background: #f97316; color: #fff; border-color: #f97316; }
+        
+        .tab-btn small { display: block; margin-top: 3px; font-size: 9px; }
+        
+        /* 탭 콘텐츠 */
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
         .tab-content.active { display: block; }
         
-        .card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid #e5e7eb;
-            margin-bottom: 15px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
+        /* 카드 */
+        .card {
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(139,92,246,0.15);
+        }
+        
+        /* 섹션 타이틀 */
         .section-title {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f3f4f6;
         }
+        
         .section-icon {
             width: 40px;
             height: 40px;
-            background: #f3f4f6;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
         }
-        .section-title h2 { font-size: 18px; font-weight: 600; color: #1f2937; }
+        
+        .section-icon.orange { background: linear-gradient(135deg, #f97316, #ef4444); }
+        
+        .section-title h2 { font-size: 18px; font-weight: 600; color: #374151; }
         .section-subtitle { font-size: 12px; color: #9ca3af; margin-left: auto; }
-        
-        /* 유튜브 썸네일 */
-        .youtube-thumbnail {
-            display: block;
-            position: relative;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-        .youtube-thumbnail img { width: 100%; display: block; }
-        .youtube-thumbnail .play-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-        .youtube-thumbnail:hover .play-overlay { background: rgba(0,0,0,0.4); }
-        .youtube-thumbnail .play-btn {
-            width: 68px;
-            height: 48px;
-            background: #ff0000;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .youtube-thumbnail .play-btn::after {
-            content: "";
-            border-style: solid;
-            border-width: 10px 0 10px 18px;
-            border-color: transparent transparent transparent #fff;
-            margin-left: 4px;
-        }
-        
-        /* 유튜브 embed */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            margin-bottom: 20px;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border: none;
-            border-radius: 12px;
-        }
         
         .guide-text {
             text-align: center;
-            padding: 15px;
-            background: #f8fafc;
-            border-radius: 10px;
-            color: #6b7280;
             font-size: 14px;
             line-height: 1.8;
+            color: #6b7280;
+            margin-bottom: 20px;
         }
-        .guide-text b { color: #1f2937; }
         
-        .nav-buttons { display: flex; justify-content: space-between; margin-top: 20px; }
-        .nav-btn {
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
+        /* 유튜브 썸네일 */
+        .youtube-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
             cursor: pointer;
-            transition: all 0.3s;
+            margin: 15px 0;
         }
-        .nav-btn.prev { background: #f3f4f6; color: #6b7280; }
-        .nav-btn.next { background: #1f2937; color: #fff; }
-        .nav-btn:hover { transform: translateY(-2px); }
-        .nav-btn.hidden { visibility: hidden; }
         
+        .youtube-thumbnail img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-btn {
+            width: 70px; height: 70px;
+            background: rgba(255,0,0,0.9);
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .play-btn::after {
+            content: '';
+            position: absolute;
+            left: 28px; top: 20px;
+            border-style: solid;
+            border-width: 15px 0 15px 25px;
+            border-color: transparent transparent transparent #fff;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            margin: 15px 0;
+        }
+        
+        .video-container iframe,
+        .video-container > div {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        /* 🔊 버튼 */
+        .speaker-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: auto;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+        
+        .speaker-btn:hover { transform: scale(1.2); }
+        
+        /* 숫자 뱃지 */
         .num-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 26px;
-            height: 26px;
-            background: #1f2937;
-            border-radius: 6px;
+            min-width: 26px; height: 26px;
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: 700;
             color: #fff;
-            font-size: 12px;
-            font-weight: 600;
-            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .key-badge {
+            background: #f97316;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-left: 8px;
         }
         
         /* DICTATION */
-        .dictation-item { padding: 15px 0; border-bottom: 1px solid #f3f4f6; }
-        .dictation-item:last-child { border-bottom: none; }
-        .dictation-sentence { 
-            font-size: 15px; 
-            line-height: 2.2; 
-            color: #374151;
+        .dictation-list { margin-top: 20px; }
+        
+        .dictation-item {
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(139,92,246,0.15);
+        }
+        
+        .dictation-row {
             display: flex;
             align-items: flex-start;
             gap: 10px;
         }
-        .dictation-sentence .speaker-btn {
-            margin-left: auto;
-            flex-shrink: 0;
-        }
-        .blank-input {
-            border: none;
-            border-bottom: 2px solid #3b82f6;
-            background: #f0f9ff;
-            padding: 5px 10px;
-            font-size: 14px;
-            font-family: inherit;
-            min-width: 100px;
-            text-align: center;
-            border-radius: 4px 4px 0 0;
-            margin: 0 3px;
-        }
-        .blank-input:focus { outline: none; background: #dbeafe; border-bottom-color: #1d4ed8; }
-        .blank-num { font-size: 10px; color: #3b82f6; font-weight: 600; vertical-align: super; }
         
-        .answer-section { margin-top: 25px; background: #f8fafc; border-radius: 12px; }
-        .answer-section summary {
-            padding: 15px 20px;
-            background: #1f2937;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
+        .dictation-text {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .blank-input {
+            width: 100px;
+            padding: 4px 8px;
+            border: 2px dashed #8b5cf6;
+            border-radius: 5px;
+            font-size: 13px;
+            text-align: center;
+            background: rgba(139,92,246,0.05);
+        }
+        
+        .blank-input:focus {
+            outline: none;
+            border-color: #06b6d4;
+            background: #fff;
+        }
+        
+        /* 정답 토글 */
+        .answer-toggle {
+            background: rgba(255,255,255,0.9);
             border-radius: 12px;
+            margin-top: 20px;
+            border: 1px solid #10b981;
+        }
+        
+        .answer-toggle summary {
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #10b981;
+            cursor: pointer;
             list-style: none;
         }
-        .answer-section[open] summary { border-radius: 12px 12px 0 0; }
-        .answer-section summary::-webkit-details-marker { display: none; }
-        .answer-content { padding: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
-        .answer-item { background: #fff; padding: 8px 14px; border-radius: 6px; font-size: 13px; border: 1px solid #e5e7eb; }
         
-        /* STEP 2 스크립트 */
-        .script-item { padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
-        .script-item:last-child { border-bottom: none; }
-        .script-main { display: flex; align-items: flex-start; gap: 10px; }
-        .script-text { flex: 1; font-size: 15px; line-height: 1.7; color: #1f2937; }
-        .speaker-btn {
-            width: 36px; height: 36px;
-            border-radius: 8px;
-            background: #f3f4f6;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
+        .answer-toggle summary::-webkit-details-marker { display: none; }
+        
+        .answer-content {
+            padding: 0 18px 15px;
+            border-top: 1px solid rgba(16,185,129,0.2);
+        }
+        
+        .answer-content p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #374151;
+        }
+        
+        /* STEP 2·3 스크립트 */
+        .script-list { margin-top: 15px; }
+        
+        .script-item {
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(139,92,246,0.15);
+            overflow: hidden;
+        }
+        
+        .script-item.key-sentence {
+            border-left: 3px solid #f97316;
+            background: rgba(255,247,237,0.9);
+        }
+        
+        .script-main {
             display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 15px;
+        }
+        
+        .script-text { flex: 1; font-size: 14px; line-height: 1.7; }
+        
+        .explain-toggle { border-top: 1px solid rgba(139,92,246,0.1); }
+        
+        .explain-toggle summary {
+            padding: 10px 15px;
+            font-size: 12px;
+            color: #7c3aed;
+            cursor: pointer;
+            list-style: none;
+        }
+        
+        .explain-toggle summary::-webkit-details-marker { display: none; }
+        
+        .explain-content { padding: 0 15px 12px; }
+        
+        .korean-text {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .vocab-box {
+            background: rgba(6,182,212,0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+        }
+        
+        .vocab-item {
+            display: inline-block;
+            margin-right: 12px;
+            font-size: 12px;
+        }
+        
+        .vocab-word { color: #0891b2; font-weight: 600; }
+        
+        .grammar-box {
+            background: rgba(139,92,246,0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 12px;
+            border-left: 3px solid #8b5cf6;
+        }
+        
+        .grammar-label { color: #7c3aed; font-weight: 600; }
+        
+        /* STEP 4 핵심문장 */
+        .key-sentence-toggle {
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(139,92,246,0.15);
+            overflow: hidden;
+        }
+        
+        .key-sentence-toggle summary {
+            padding: 15px;
+            cursor: pointer;
+            list-style: none;
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        .key-sentence-toggle summary::-webkit-details-marker { display: none; }
+        
+        .key-sentence-toggle summary .number {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-        .speaker-btn:hover { background: #e5e7eb; transform: scale(1.05); }
-        
-        .expression-toggle { margin: 8px 0 0 36px; }
-        .expression-toggle summary {
-            font-size: 13px;
-            color: #3b82f6;
-            cursor: pointer;
-            padding: 8px 12px;
-            background: #eff6ff;
-            border-radius: 6px;
-            list-style: none;
-            display: inline-block;
-        }
-        .expression-toggle summary::-webkit-details-marker { display: none; }
-        .expression-toggle summary:hover { background: #dbeafe; }
-        .expression-toggle-content {
-            margin-top: 8px;
-            padding: 12px 15px;
-            background: #fffbeb;
-            border-radius: 8px;
-            border-left: 3px solid #f59e0b;
-        }
-        .expression-toggle-content p { font-size: 14px; color: #92400e; margin-bottom: 5px; }
-        .expression-toggle-content p:last-child { margin-bottom: 0; }
-        
-        .script-item.highlight {
-            background: #fefce8;
-            margin: 10px -15px;
-            padding: 15px;
-            border-radius: 10px;
-            border-bottom: none;
-        }
-        .script-item.highlight .num-badge { background: #f59e0b; }
-        
-        /* STEP 3 표현정리 */
-        .expression-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 15px;
-            border: 1px solid #e5e7eb;
-        }
-        .expression-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f3f4f6;
-            flex-wrap: wrap;
-        }
-        .expression-num {
             width: 26px; height: 26px;
-            background: #1f2937;
-            border-radius: 6px;
-            color: #fff;
+            background: #f97316;
+            border-radius: 7px;
             font-size: 12px;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #fff;
+            margin-right: 10px;
         }
-        .expression-keyword { font-size: 16px; font-weight: 700; color: #1f2937; }
-        .expression-meaning { font-size: 13px; color: #6b7280; }
-        .original-sentence { background: #fef3c7; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
-        .original-sentence .label { font-size: 11px; color: #92400e; font-weight: 600; margin-bottom: 5px; }
-        .original-sentence .sentence { font-size: 14px; color: #1f2937; }
-        .original-sentence mark { background: #fcd34d; padding: 2px 5px; border-radius: 3px; }
-        .example-sentences .label { font-size: 11px; color: #6b7280; font-weight: 600; margin-bottom: 8px; }
-        .example { background: #f8fafc; border-radius: 6px; padding: 10px; margin-bottom: 6px; }
-        .example .korean { font-size: 13px; color: #6b7280; margin-bottom: 3px; }
-        .example .english { font-size: 14px; color: #1f2937; font-weight: 500; }
         
-        /* QUIZ */
-        .quiz-type-title {
+        .key-sentence-toggle summary .tap-hint {
+            display: block;
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 8px;
+            margin-left: 36px;
+        }
+        
+        .key-sentence-toggle[open] summary .tap-hint { display: none; }
+        
+        .key-sentence-toggle .answer-content {
+            padding: 0 15px 15px;
+            border-top: 1px solid rgba(139,92,246,0.1);
+        }
+        
+        .key-sentence-toggle .english-answer {
             font-size: 14px;
             font-weight: 600;
-            color: #1f2937;
-            padding: 10px 15px;
-            background: #f3f4f6;
+            color: #0891b2;
+            padding: 12px;
+            background: rgba(6,182,212,0.1);
             border-radius: 8px;
-            margin-bottom: 15px;
+            margin: 12px 0;
+            line-height: 1.6;
         }
-        .quiz-item { padding: 15px; background: #f8fafc; border-radius: 10px; margin-bottom: 12px; }
-        .quiz-question { font-size: 15px; line-height: 1.8; color: #374151; margin-bottom: 10px; }
-        .quiz-hint { font-size: 12px; color: #9ca3af; margin-top: 8px; font-style: italic; }
-        .quiz-input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 15px;
-            font-family: inherit;
-            margin-top: 10px;
-            transition: all 0.2s;
-        }
-        .quiz-input:focus { outline: none; border-color: #3b82f6; background: #f0f9ff; }
-        .quiz-blank {
-            border: none;
-            border-bottom: 2px solid #3b82f6;
-            background: #f0f9ff;
-            padding: 5px 10px;
-            font-size: 14px;
-            font-family: inherit;
-            min-width: 120px;
-            text-align: center;
-            border-radius: 4px 4px 0 0;
-        }
-        .quiz-blank:focus { outline: none; background: #dbeafe; }
-        .quiz-options { margin-top: 10px; }
-        .quiz-option {
-            display: block;
-            padding: 12px 15px;
-            background: #fff;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .quiz-option:hover { border-color: #3b82f6; background: #f0f9ff; }
-        .quiz-option.selected { border-color: #3b82f6; background: #dbeafe; }
         
+        /* QUIZ */
+        .quiz-section { margin-bottom: 25px; }
+        
+        .quiz-type-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #7c3aed;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(139,92,246,0.2);
+        }
+        
+        .quiz-item {
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(139,92,246,0.15);
+        }
+        
+        .quiz-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px; height: 26px;
+            background: #f97316;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            margin-right: 8px;
+        }
+        
+        .quiz-question {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+        
+        .quiz-hint {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 6px;
+        }
+        
+        .quiz-korean {
+            font-size: 14px;
+            color: #4b5563;
+            background: rgba(6,182,212,0.1);
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+        
+        .quiz-input {
+            width: 130px;
+            padding: 6px 10px;
+            border: 2px solid #f97316;
+            border-radius: 6px;
+            font-size: 13px;
+            text-align: center;
+        }
+        
+        .quiz-textarea {
+            width: 100%;
+            min-height: 70px;
+            padding: 10px;
+            border: 1px solid rgba(139,92,246,0.3);
+            border-radius: 8px;
+            font-size: 13px;
+            resize: vertical;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+        
+        .quiz-option:hover { background: rgba(139,92,246,0.1); }
+        
+        .quiz-answer-toggle {
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 1px solid #f97316;
+        }
+        
+        .quiz-answer-toggle summary {
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #f97316;
+            cursor: pointer;
+            list-style: none;
+        }
+        
+        .quiz-answer-toggle summary::-webkit-details-marker { display: none; }
+        
+        .quiz-answer-content {
+            padding: 0 18px 15px;
+            border-top: 1px solid rgba(249,115,22,0.2);
+        }
+        
+        .quiz-answer-content h4 {
+            font-size: 13px;
+            color: #7c3aed;
+            margin: 12px 0 8px;
+        }
+        
+        .quiz-answer-content p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #4b5563;
+        }
+        
+        /* 네비게이션 */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(139,92,246,0.1);
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .nav-btn.prev {
+            background: rgba(255,255,255,0.8);
+            color: #6b7280;
+            border: 1px solid rgba(139,92,246,0.2);
+        }
+        
+        .nav-btn.prev:hover { background: #fff; color: #374151; }
+        
+        .nav-btn.next {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            color: #fff;
+        }
+        
+        .nav-btn.next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139,92,246,0.3);
+        }
+        
+        .nav-btn.hidden { visibility: hidden; }
+        
+        /* 저작권 */
         .copyright {
             text-align: center;
             margin-top: 40px;
-            padding: 20px;
+            padding: 15px;
             font-size: 11px;
             color: #9ca3af;
-            border-top: 1px solid #e5e7eb;
-        }
-        
-        @media (max-width: 600px) {
-            body { padding: 15px; }
-            .header h1 { font-size: 20px; }
-            .tab-btn { font-size: 10px; padding: 10px 5px; }
-            .tab-btn small { font-size: 8px; }
-            .blank-input { min-width: 70px; font-size: 13px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- 헤더 -->
         <div class="header">
-            <h1>막연한 자기긍정의 위험성</h1>
-            <p>The Danger of Forced Positivity</p>
+            <h1>스캔들 연예인의 호화로운 근황</h1>
+            <p>Disgraced Star's Luxurious Lifestyle Sparks Outrage</p>
         </div>
         
+        <!-- 탭 메뉴 -->
         <div class="tab-menu">
-            <button class="tab-btn active" onclick="showTab(1)">STEP 1<small>자막없이</small></button>
+            <button class="tab-btn active" onclick="showTab(1)">STEP 1<small>듣기</small></button>
             <button class="tab-btn" onclick="showTab(2)">DICTATION<small>받아쓰기</small></button>
-            <button class="tab-btn" onclick="showTab(3)">STEP 2<small>스크립트</small></button>
-            <button class="tab-btn" onclick="showTab(4)">STEP 3<small>표현정리</small></button>
-            <button class="tab-btn" onclick="showTab(5)">QUIZ<small>퀴즈</small></button>
+            <button class="tab-btn" onclick="showTab(3)">STEP 2·3<small>해설</small></button>
+            <button class="tab-btn" onclick="showTab(4)">STEP 4<small>말하기</small></button>
+            <button class="tab-btn" onclick="showTab(5)">STEP 5<small>복습</small></button>
+            <button class="tab-btn quiz-btn" onclick="showTab(6)">QUIZ<small>퀴즈</small></button>
         </div>
         
-        <!-- TAB 1: STEP 1 -->
+        <!-- ========== STEP 1 ========== -->
         <div class="tab-content active" id="tab1">
             <div class="card">
                 <div class="section-title">
                     <div class="section-icon">🎧</div>
                     <h2>자막 없이 듣기</h2>
                 </div>
+                <p class="guide-text">영상을 집중해서 들어보세요.<br>몇 개의 단어가 들리나요?</p>
                 
                 <div class="youtube-thumbnail" id="thumb1" onclick="playVideo('thumb1')">
-                    <img src="https://img.youtube.com/vi/udvsSnrbqhM/maxresdefault.jpg" alt="영상 썸네일">
-                    <div class="play-overlay">
-                        <div class="play-btn"></div>
-                    </div>
-                </div>
-                
-                <div class="guide-text">
-                    자막 없이 영상을 끝까지 들어보세요.<br>
-                    모르는 부분이 있어도 괜찮아요.<br>
-                    <b>2~3번 반복</b>해서 전체 흐름을 파악해보세요!
-                </div>
-            </div>
-            <div class="nav-buttons">
-                <button class="nav-btn prev hidden">← 이전</button>
-                <button class="nav-btn next" onclick="showTab(2)">다음 단계 →</button>
-            </div>
-        </div>
-        
-        <!-- TAB 2: DICTATION -->
-        <div class="tab-content" id="tab2">
-            <div class="card">
-                <div class="section-title">
-                    <div class="section-icon">✍️</div>
-                    <h2>받아쓰기</h2>
-                    <span class="section-subtitle">빈칸을 채워보세요</span>
-                </div>
-                
-                <div class="youtube-thumbnail" id="thumb2" onclick="playVideo('thumb2')">
-                    <img src="https://img.youtube.com/vi/udvsSnrbqhM/maxresdefault.jpg" alt="영상 썸네일">
-                    <div class="play-overlay">
-                        <div class="play-btn"></div>
-                    </div>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">1</span>
-                        <span class="dict-text">"I am enough." "I am doing well." "I <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(1)</sup> to be loved."</span>
-                        <button class="speaker-btn" onclick="playAtDict(5)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">2</span>
-                        <span class="dict-text">People say that if you <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(2)</sup> these words every day, your life will change.</span>
-                        <button class="speaker-btn" onclick="playAtDict(12)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">4</span>
-                        <span class="dict-text">But today, I <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(3)</sup> talk about something a little uncomfortable.</span>
-                        <button class="speaker-btn" onclick="playAtDict(24)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">7</span>
-                        <span class="dict-text"><input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(4)</sup>, it is the tension you feel when your actions and beliefs do not match.</span>
-                        <button class="speaker-btn" onclick="playAtDict(44)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">9</span>
-                        <span class="dict-text"><input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(5)</sup>, they sense that something is off.</span>
-                        <button class="speaker-btn" onclick="playAtDict(60)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">11</span>
-                        <span class="dict-text">So <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(6)</sup> finding the cause, we try to bury the feeling quickly.</span>
-                        <button class="speaker-btn" onclick="playAtDict(72)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">17</span>
-                        <span class="dict-text">To avoid the discomfort of reality, we <input type="text" class="blank-input" style="min-width:150px;" maxlength="25"><sup class="blank-num">(7)</sup> seeing it.</span>
-                        <button class="speaker-btn" onclick="playAtDict(107)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">20</span>
-                        <span class="dict-text">What we truly need is <input type="text" class="blank-input" maxlength="10"><sup class="blank-num">(8)</sup> self-affirmation, <input type="text" class="blank-input" maxlength="10"><sup class="blank-num">(9)</sup> self-compassion.</span>
-                        <button class="speaker-btn" onclick="playAtDict(127)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">26</span>
-                        <span class="dict-text">It means accepting your flaws without <input type="text" class="blank-input" maxlength="20"><sup class="blank-num">(10)</sup>.</span>
-                        <button class="speaker-btn" onclick="playAtDict(172)">🔊</button>
-                    </p>
-                </div>
-                
-                <div class="dictation-item">
-                    <p class="dictation-sentence">
-                        <span class="num-badge">30</span>
-                        <span class="dict-text">Because <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(11)</sup> you face the problem <input type="text" class="blank-input" maxlength="15"><sup class="blank-num">(12)</sup> solve it.</span>
-                        <button class="speaker-btn" onclick="playAtDict(198)">🔊</button>
-                    </p>
-                </div>
-                
-                <details class="answer-section">
-                    <summary>📝 정답 확인</summary>
-                    <div class="answer-content">
-                        <span class="answer-item"><b>(1)</b> deserve</span>
-                        <span class="answer-item"><b>(2)</b> repeat</span>
-                        <span class="answer-item"><b>(3)</b> want to</span>
-                        <span class="answer-item"><b>(4)</b> Put simply</span>
-                        <span class="answer-item"><b>(5)</b> Deep down</span>
-                        <span class="answer-item"><b>(6)</b> instead of</span>
-                        <span class="answer-item"><b>(7)</b> talk ourselves out of</span>
-                        <span class="answer-item"><b>(8)</b> not</span>
-                        <span class="answer-item"><b>(9)</b> but</span>
-                        <span class="answer-item"><b>(10)</b> falling apart</span>
-                        <span class="answer-item"><b>(11)</b> only when</span>
-                        <span class="answer-item"><b>(12)</b> can you</span>
-                    </div>
-                </details>
-            </div>
-            <div class="nav-buttons">
-                <button class="nav-btn prev" onclick="showTab(1)">← 이전</button>
-                <button class="nav-btn next" onclick="showTab(3)">다음 단계 →</button>
-            </div>
-        </div>
-        
-        <!-- TAB 3: STEP 2 스크립트 -->
-        <div class="tab-content" id="tab3">
-            <div class="card">
-                <div class="section-title">
-                    <div class="section-icon">📖</div>
-                    <h2>영문 스크립트</h2>
-                    <span class="section-subtitle">🔊 클릭하면 유튜브에서 재생</span>
-                </div>
-                
-                <div class="youtube-thumbnail" id="thumb3" onclick="playVideo('thumb3')">
-                    <img src="https://img.youtube.com/vi/udvsSnrbqhM/maxresdefault.jpg" alt="썸네일">
+                    <img src="https://img.youtube.com/vi/dQSsU4qgKe0/maxresdefault.jpg" alt="썸네일">
                     <div class="play-overlay"><div class="play-btn"></div></div>
                 </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev hidden">← 이전</button>
+                <button class="nav-btn next" onclick="showTab(2)">다음 →</button>
+            </div>
+        </div>
+        
+        <!-- ========== DICTATION ========== -->
+        <div class="tab-content" id="tab2">
+            <div class="section-title">
+                <div class="section-icon">✍️</div>
+                <h2>받아쓰기</h2>
+                <span class="section-subtitle">빈칸을 채워보세요</span>
+            </div>
+            
+            <div class="youtube-thumbnail" id="thumb2" onclick="playVideo('thumb2')">
+                <img src="https://img.youtube.com/vi/dQSsU4qgKe0/maxresdefault.jpg" alt="썸네일">
+                <div class="play-overlay"><div class="play-btn"></div></div>
+            </div>
+            
+            <div class="dictation-list">
+                <div class="dictation-item">
+                    <div class="dictation-row">
+                        <span class="num-badge">2</span>
+                        <span class="dictation-text">Actor Michael Han, who left the industry years ago, is <input type="text" class="blank-input" placeholder="___"> for the wrong reasons.</span>
+                        <button class="speaker-btn" onclick="playAtDict(5)">🔊</button>
+                    </div>
+                </div>
                 
+                <div class="dictation-item">
+                    <div class="dictation-row">
+                        <span class="num-badge">10</span>
+                        <span class="dictation-text">But in 2023, everything <input type="text" class="blank-input" placeholder="___">.</span>
+                        <button class="speaker-btn" onclick="playAtDict(66)">🔊</button>
+                    </div>
+                </div>
+                
+                <div class="dictation-item">
+                    <div class="dictation-row">
+                        <span class="num-badge">13</span>
+                        <span class="dictation-text">As the story spread, more accusations from his school days <input type="text" class="blank-input" placeholder="___">.</span>
+                        <button class="speaker-btn" onclick="playAtDict(90)">🔊</button>
+                    </div>
+                </div>
+                
+                <div class="dictation-item">
+                    <div class="dictation-row">
+                        <span class="num-badge">20</span>
+                        <span class="dictation-text">He said he would stop all activities and deeply <input type="text" class="blank-input" placeholder="___"> his actions.</span>
+                        <button class="speaker-btn" onclick="playAtDict(148)">🔊</button>
+                    </div>
+                </div>
+                
+                <div class="dictation-item">
+                    <div class="dictation-row">
+                        <span class="num-badge">24</span>
+                        <span class="dictation-text">"Years of doing nothing, yet still <input type="text" class="blank-input" placeholder="___">." Criticism poured in.</span>
+                        <button class="speaker-btn" onclick="playAtDict(186)">🔊</button>
+                    </div>
+                </div>
+            </div>
+            
+            <details class="answer-toggle">
+                <summary>📝 정답 확인</summary>
+                <div class="answer-content">
+                    <p><b>2.</b> back in the spotlight</p>
+                    <p><b>10.</b> fell apart</p>
+                    <p><b>13.</b> came pouring in</p>
+                    <p><b>20.</b> reflect on</p>
+                    <p><b>24.</b> living large</p>
+                </div>
+            </details>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="showTab(1)">← 이전</button>
+                <button class="nav-btn next" onclick="showTab(3)">다음 →</button>
+            </div>
+        </div>
+        
+        <!-- ========== STEP 2·3 ========== -->
+        <div class="tab-content" id="tab3">
+            <div class="section-title">
+                <div class="section-icon">📖</div>
+                <h2>스크립트 & 해설</h2>
+                <span class="section-subtitle">문장을 클릭하면 해설이 나와요</span>
+            </div>
+            
+            <div class="youtube-thumbnail" id="thumb3" onclick="playVideo('thumb3')">
+                <img src="https://img.youtube.com/vi/dQSsU4qgKe0/maxresdefault.jpg" alt="썸네일">
+                <div class="play-overlay"><div class="play-btn"></div></div>
+            </div>
+            
+            <div class="script-list">
+                <!-- 문장 1 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">1</span>
-                        <span class="script-text">"I am enough." "I am doing well." "I deserve to be loved."</span>
-                        <button class="speaker-btn" onclick="playAt(5)">🔊</button>
+                        <span class="script-text">Here is your entertainment news.</span>
+                        <button class="speaker-btn" onclick="playAt(0)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>deserve to ~</b> ~할 자격이 있다</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">연예 뉴스입니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">entertainment</span> 연예, 오락</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
-                <div class="script-item">
+                <!-- 문장 2 (핵심) -->
+                <div class="script-item key-sentence">
                     <div class="script-main">
                         <span class="num-badge">2</span>
-                        <span class="script-text">People say that if you repeat these words every day, your life will change.</span>
-                        <button class="speaker-btn" onclick="playAt(12)">🔊</button>
+                        <span class="script-text">Actor Michael Han, who left the industry years ago, is back in the spotlight for the wrong reasons.</span>
+                        <span class="key-badge">⭐ 핵심</span>
+                        <button class="speaker-btn" onclick="playAt(5)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">몇 년 전 업계를 떠났던 배우 마이클 한이 좋지 않은 이유로 다시 주목받고 있습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">industry</span> 업계</span>
+                                <span class="vocab-item"><span class="vocab-word">spotlight</span> 주목, 스포트라이트</span>
+                            </div>
+                            <div class="grammar-box">
+                                <span class="grammar-label">💡 표현</span> <b>be back in the spotlight</b> 다시 주목받다
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
+                <!-- 문장 3 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">3</span>
-                        <span class="script-text">And yes, self-affirmation can be helpful.</span>
-                        <button class="speaker-btn" onclick="playAt(18)">🔊</button>
+                        <span class="script-text">After staying out of the public eye for three years, he was spotted by a popular travel blogger.</span>
+                        <button class="speaker-btn" onclick="playAt(12)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>self-affirmation</b> 자기 확언</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">3년간 대중의 눈을 피해 지내다가, 그는 유명 여행 블로거에게 목격되었습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">public eye</span> 대중의 시선</span>
+                                <span class="vocab-item"><span class="vocab-word">spotted</span> 목격된</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 4 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">4</span>
-                        <span class="script-text">But today, I want to talk about something a little uncomfortable.</span>
-                        <button class="speaker-btn" onclick="playAt(24)">🔊</button>
+                        <span class="script-text">The location was a water villa in the Maldives that costs over fifteen thousand dollars a night.</span>
+                        <button class="speaker-btn" onclick="playAt(20)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">장소는 1박에 1만 5천 달러가 넘는 몰디브의 수상 빌라였습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">water villa</span> 수상 빌라</span>
+                                <span class="vocab-item"><span class="vocab-word">Maldives</span> 몰디브</span>
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
+                <!-- 문장 5 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">5</span>
-                        <span class="script-text">The idea that forced positivity can actually slow down your growth.</span>
-                        <button class="speaker-btn" onclick="playAt(30)">🔊</button>
+                        <span class="script-text">In the photos, he was holding a glass of champagne on a yacht, smiling brightly.</span>
+                        <button class="speaker-btn" onclick="playAt(28)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>forced positivity</b> 억지 긍정</p>
-                            <p>💡 <b>slow down</b> 속도를 늦추다</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">사진 속에서 그는 요트 위에서 샴페인 잔을 들고 환하게 웃고 있었습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">champagne</span> 샴페인</span>
+                                <span class="vocab-item"><span class="vocab-word">yacht</span> 요트</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 6 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">6</span>
-                        <span class="script-text">In psychology, there is a concept called cognitive dissonance.</span>
-                        <button class="speaker-btn" onclick="playAt(37)">🔊</button>
+                        <span class="script-text">So who is Michael Han?</span>
+                        <button class="speaker-btn" onclick="playAt(36)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>cognitive dissonance</b> 인지부조화</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그렇다면 마이클 한은 누구일까요?</p>
                         </div>
                     </details>
                 </div>
                 
-                <div class="script-item highlight">
+                <!-- 문장 7 -->
+                <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">7</span>
-                        <span class="script-text">⭐ <b>Put simply</b>, it is the tension you feel when your actions and beliefs do not match.</span>
-                        <button class="speaker-btn" onclick="playAt(44)">🔊</button>
+                        <span class="script-text">He became famous in 2019 with the drama "My Kind Neighbor," playing a man who secretly helped others.</span>
+                        <button class="speaker-btn" onclick="playAt(40)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>⭐ <b>put simply</b> 쉽게 말해, 간단히 말하면</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그는 2019년 드라마 "나의 친절한 이웃"에서 남몰래 다른 사람들을 돕는 남자 역을 맡아 유명해졌습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">secretly</span> 남몰래, 비밀리에</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 8 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">8</span>
-                        <span class="script-text">For example, imagine someone who keeps making the same mistake at work.</span>
-                        <button class="speaker-btn" onclick="playAt(52)">🔊</button>
+                        <span class="script-text">With his kind image and warm smile, he became a star and took over advertising and film.</span>
+                        <button class="speaker-btn" onclick="playAt(50)">🔊</button>
                     </div>
-                </div>
-                
-                <div class="script-item highlight">
-                    <div class="script-main">
-                        <span class="num-badge">9</span>
-                        <span class="script-text">⭐ <b>Deep down</b>, they sense that something is off.</span>
-                        <button class="speaker-btn" onclick="playAt(60)">🔊</button>
-                    </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>⭐ <b>deep down</b> 마음 깊은 곳에서는</p>
-                            <p>💡 <b>something is off</b> 뭔가 잘못되다</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">친근한 이미지와 따뜻한 미소로 그는 스타가 되어 광고와 영화를 휩쓸었습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">take over</span> 휩쓸다, 장악하다</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 9 -->
                 <div class="script-item">
                     <div class="script-main">
-                        <span class="num-badge">10</span>
-                        <span class="script-text">But sitting with that tension is not easy.</span>
-                        <button class="speaker-btn" onclick="playAt(66)">🔊</button>
+                        <span class="num-badge">9</span>
+                        <span class="script-text">His fee per episode reached three hundred fifty thousand dollars.</span>
+                        <button class="speaker-btn" onclick="playAt(60)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>sit with</b> (불편한 감정을) 견디다</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그의 회당 출연료는 35만 달러에 달했습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">fee</span> 출연료, 수수료</span>
+                                <span class="vocab-item"><span class="vocab-word">episode</span> (드라마) 회차</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 10 (핵심) -->
+                <div class="script-item key-sentence">
+                    <div class="script-main">
+                        <span class="num-badge">10</span>
+                        <span class="script-text">But in 2023, everything fell apart.</span>
+                        <span class="key-badge">⭐ 핵심</span>
+                        <button class="speaker-btn" onclick="playAt(66)">🔊</button>
+                    </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">하지만 2023년, 모든 것이 무너졌습니다.</p>
+                            <div class="grammar-box">
+                                <span class="grammar-label">💡 표현</span> <b>fall apart</b> 무너지다, 붕괴되다
+                            </div>
+                        </div>
+                    </details>
+                </div>
+                
+                <!-- 문장 11 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">11</span>
-                        <span class="script-text">So instead of finding the cause, we try to bury the feeling quickly.</span>
+                        <span class="script-text">It started when his former manager posted an exposé online.</span>
                         <button class="speaker-btn" onclick="playAt(72)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>instead of</b> ~대신에</p>
-                            <p>💡 <b>bury</b> 묻다, 숨기다</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그의 전 매니저가 온라인에 폭로글을 올리면서 시작되었습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">former</span> 전(前), 이전의</span>
+                                <span class="vocab-item"><span class="vocab-word">exposé</span> 폭로(글)</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 12 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">12</span>
-                        <span class="script-text">"It is fine. I am doing great."</span>
-                        <button class="speaker-btn" onclick="playAt(78)">🔊</button>
+                        <span class="script-text">The manager claimed that he had verbally abused and humiliated staff members for years.</span>
+                        <button class="speaker-btn" onclick="playAt(80)">🔊</button>
                     </div>
-                </div>
-                
-                <div class="script-item">
-                    <div class="script-main">
-                        <span class="num-badge">13</span>
-                        <span class="script-text">With just one line, the tension fades, and you feel relieved.</span>
-                        <button class="speaker-btn" onclick="playAt(83)">🔊</button>
-                    </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>fade</b> 사라지다</p>
-                            <p>💡 <b>relieved</b> 안도하는</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">매니저는 그가 수년간 스태프들에게 언어폭력을 가하고 모욕했다고 주장했습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">verbally abused</span> 언어폭력을 가하다</span>
+                                <span class="vocab-item"><span class="vocab-word">humiliated</span> 모욕하다</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 13 (핵심) -->
+                <div class="script-item key-sentence">
+                    <div class="script-main">
+                        <span class="num-badge">13</span>
+                        <span class="script-text">As the story spread, more accusations from his school days came pouring in.</span>
+                        <span class="key-badge">⭐ 핵심</span>
+                        <button class="speaker-btn" onclick="playAt(90)">🔊</button>
+                    </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">이야기가 퍼지면서 학창시절에 대한 더 많은 고발이 쏟아졌습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">accusations</span> 고발, 비난</span>
+                            </div>
+                            <div class="grammar-box">
+                                <span class="grammar-label">💡 표현</span> <b>come pouring in</b> 쏟아지다, 밀려들다
+                            </div>
+                        </div>
+                    </details>
+                </div>
+                
+                <!-- 문장 14 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">14</span>
-                        <span class="script-text">But did the problem disappear along with it?</span>
-                        <button class="speaker-btn" onclick="playAt(90)">🔊</button>
+                        <span class="script-text">Former classmates said he had bullied several students back in school.</span>
+                        <button class="speaker-btn" onclick="playAt(98)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">전 급우들은 그가 학교에서 여러 학생들을 괴롭혔다고 말했습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">classmates</span> 급우, 반 친구</span>
+                                <span class="vocab-item"><span class="vocab-word">bullied</span> 괴롭히다</span>
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
+                <!-- 문장 15 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">15</span>
-                        <span class="script-text">No. The problem is still there.</span>
-                        <button class="speaker-btn" onclick="playAt(95)">🔊</button>
+                        <span class="script-text">One victim revealed that she had dropped out of school because of him.</span>
+                        <button class="speaker-btn" onclick="playAt(106)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">한 피해자는 그 때문에 자퇴했다고 밝혔습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">victim</span> 피해자</span>
+                                <span class="vocab-item"><span class="vocab-word">dropped out</span> 자퇴하다</span>
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
+                <!-- 문장 16 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">16</span>
-                        <span class="script-text">This is the trap of forced positivity.</span>
-                        <button class="speaker-btn" onclick="playAt(100)">🔊</button>
+                        <span class="script-text">A staff member who had suffered his abuse reported him to tax authorities.</span>
+                        <button class="speaker-btn" onclick="playAt(114)">🔊</button>
                     </div>
-                </div>
-                
-                <div class="script-item highlight">
-                    <div class="script-main">
-                        <span class="num-badge">17</span>
-                        <span class="script-text">⭐ To avoid the discomfort of reality, we <b>talk ourselves out of</b> seeing it.</span>
-                        <button class="speaker-btn" onclick="playAt(107)">🔊</button>
-                    </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>⭐ <b>talk oneself out of ~ing</b> ~하지 않도록 스스로를 설득하다</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그의 학대를 당했던 한 스태프가 그를 세무 당국에 신고했습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">suffered</span> 당하다, 겪다</span>
+                                <span class="vocab-item"><span class="vocab-word">tax authorities</span> 세무 당국</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 17 -->
+                <div class="script-item">
+                    <div class="script-main">
+                        <span class="num-badge">17</span>
+                        <span class="script-text">An investigation revealed that he had evaded about ten million dollars in taxes over five years.</span>
+                        <button class="speaker-btn" onclick="playAt(122)">🔊</button>
+                    </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">조사 결과 그가 5년간 약 1천만 달러의 세금을 탈루한 것으로 밝혀졌습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">investigation</span> 조사</span>
+                                <span class="vocab-item"><span class="vocab-word">evaded</span> 탈루하다, 회피하다</span>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+                
+                <!-- 문장 18 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">18</span>
-                        <span class="script-text">Then what should we do instead?</span>
-                        <button class="speaker-btn" onclick="playAt(115)">🔊</button>
+                        <span class="script-text">Workplace abuse, school bullying, tax evasion. His image was completely destroyed.</span>
+                        <button class="speaker-btn" onclick="playAt(132)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">직장 내 학대, 학교 폭력, 탈세. 그의 이미지는 완전히 무너졌습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">tax evasion</span> 탈세</span>
+                                <span class="vocab-item"><span class="vocab-word">destroyed</span> 파괴되다</span>
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
+                <!-- 문장 19 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">19</span>
-                        <span class="script-text">Psychologist Kristin Neff says this in her research.</span>
-                        <button class="speaker-btn" onclick="playAt(120)">🔊</button>
+                        <span class="script-text">He held a press conference and apologized in tears.</span>
+                        <button class="speaker-btn" onclick="playAt(140)">🔊</button>
                     </div>
-                </div>
-                
-                <div class="script-item highlight">
-                    <div class="script-main">
-                        <span class="num-badge">20</span>
-                        <span class="script-text">⭐ What we truly need is <b>not</b> self-affirmation, <b>but</b> self-compassion.</span>
-                        <button class="speaker-btn" onclick="playAt(127)">🔊</button>
-                    </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>⭐ <b>not A, but B</b> A가 아니라 B</p>
-                            <p>💡 <b>self-compassion</b> 자기연민</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그는 기자회견을 열고 눈물로 사과했습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">press conference</span> 기자회견</span>
+                                <span class="vocab-item"><span class="vocab-word">in tears</span> 눈물을 흘리며</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 20 (핵심) -->
+                <div class="script-item key-sentence">
+                    <div class="script-main">
+                        <span class="num-badge">20</span>
+                        <span class="script-text">He said he would stop all activities and deeply reflect on his actions.</span>
+                        <span class="key-badge">⭐ 핵심</span>
+                        <button class="speaker-btn" onclick="playAt(148)">🔊</button>
+                    </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그는 모든 활동을 중단하고 자신의 행동을 깊이 반성하겠다고 말했습니다.</p>
+                            <div class="grammar-box">
+                                <span class="grammar-label">💡 표현</span> <b>reflect on</b> ~을 반성하다, 되돌아보다
+                            </div>
+                        </div>
+                    </details>
+                </div>
+                
+                <!-- 문장 21 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">21</span>
-                        <span class="script-text">Self-compassion means acknowledging your weaknesses while still being kind to yourself.</span>
-                        <button class="speaker-btn" onclick="playAt(135)">🔊</button>
+                        <span class="script-text">Last year, he quietly tried to make a comeback.</span>
+                        <button class="speaker-btn" onclick="playAt(156)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>acknowledge</b> 인정하다</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">작년, 그는 조용히 복귀를 시도했습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">quietly</span> 조용히</span>
+                                <span class="vocab-item"><span class="vocab-word">comeback</span> 복귀</span>
+                            </div>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 22 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">22</span>
-                        <span class="script-text">Forced positivity stops at, "I am fine."</span>
-                        <button class="speaker-btn" onclick="playAt(143)">🔊</button>
+                        <span class="script-text">When his new drama casting was announced, backlash was fierce and the production canceled his role.</span>
+                        <button class="speaker-btn" onclick="playAt(166)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그의 새 드라마 캐스팅이 발표되자 반발이 거셌고, 제작진은 그의 역할을 취소했습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">backlash</span> 반발</span>
+                                <span class="vocab-item"><span class="vocab-word">fierce</span> 거센, 격렬한</span>
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
+                <!-- 문장 23 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">23</span>
-                        <span class="script-text">But self-compassion takes one step further.</span>
-                        <button class="speaker-btn" onclick="playAt(149)">🔊</button>
+                        <span class="script-text">And this week, he was spotted living in luxury once again.</span>
+                        <button class="speaker-btn" onclick="playAt(176)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">그리고 이번 주, 그는 다시 한번 호화로운 생활을 하는 모습이 목격되었습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">luxury</span> 호화, 사치</span>
+                                <span class="vocab-item"><span class="vocab-word">once again</span> 다시 한번</span>
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
-                <div class="script-item">
+                <!-- 문장 24 (핵심) -->
+                <div class="script-item key-sentence">
                     <div class="script-main">
                         <span class="num-badge">24</span>
-                        <span class="script-text">"I am not great at this. But that does not make me a bad person."</span>
-                        <button class="speaker-btn" onclick="playAt(156)">🔊</button>
+                        <span class="script-text">"This is why you never pity celebrities." "Years of doing nothing, yet still living large." Criticism poured in.</span>
+                        <span class="key-badge">⭐ 핵심</span>
+                        <button class="speaker-btn" onclick="playAt(186)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">"이래서 연예인을 동정하면 안 돼." "몇 년을 아무것도 안 하고도 여전히 호화롭게 사네." 비난이 쏟아졌습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">pity</span> 동정하다</span>
+                                <span class="vocab-item"><span class="vocab-word">criticism</span> 비난</span>
+                            </div>
+                            <div class="grammar-box">
+                                <span class="grammar-label">💡 표현</span> <b>live large</b> 호화롭게 살다
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
+                <!-- 문장 25 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">25</span>
-                        <span class="script-text">"I made a mistake. But I can learn from it."</span>
-                        <button class="speaker-btn" onclick="playAt(165)">🔊</button>
+                        <span class="script-text">On the other hand, some defended him, asking what is wrong with traveling on his own money.</span>
+                        <button class="speaker-btn" onclick="playAt(198)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">반면, 일부는 자기 돈으로 여행하는 게 뭐가 잘못이냐며 그를 옹호했습니다.</p>
+                            <div class="vocab-box">
+                                <span class="vocab-item"><span class="vocab-word">defended</span> 옹호하다</span>
+                                <span class="vocab-item"><span class="vocab-word">on his own money</span> 자기 돈으로</span>
+                            </div>
+                        </div>
+                    </details>
                 </div>
                 
+                <!-- 문장 26 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">26</span>
-                        <span class="script-text">It means accepting your flaws without falling apart.</span>
-                        <button class="speaker-btn" onclick="playAt(172)">🔊</button>
+                        <span class="script-text">Will Michael Han ever be able to return to the entertainment industry?</span>
+                        <button class="speaker-btn" onclick="playAt(210)">🔊</button>
                     </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>fall apart</b> 무너지다</p>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">마이클 한은 과연 연예계에 복귀할 수 있을까요?</p>
                         </div>
                     </details>
                 </div>
                 
+                <!-- 문장 27 -->
                 <div class="script-item">
                     <div class="script-main">
                         <span class="num-badge">27</span>
-                        <span class="script-text">This is honest positivity.</span>
-                        <button class="speaker-btn" onclick="playAt(178)">🔊</button>
-                    </div>
-                </div>
-                
-                <div class="script-item">
-                    <div class="script-main">
-                        <span class="num-badge">28</span>
-                        <span class="script-text">Not the kind that ignores reality, but the kind that faces reality and still moves forward.</span>
-                        <button class="speaker-btn" onclick="playAt(183)">🔊</button>
-                    </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>💡 <b>face reality</b> 현실을 직면하다</p>
-                        </div>
-                    </details>
-                </div>
-                
-                <div class="script-item">
-                    <div class="script-main">
-                        <span class="num-badge">29</span>
-                        <span class="script-text">Honest positivity makes you stronger.</span>
-                        <button class="speaker-btn" onclick="playAt(192)">🔊</button>
-                    </div>
-                </div>
-                
-                <div class="script-item highlight">
-                    <div class="script-main">
-                        <span class="num-badge">30</span>
-                        <span class="script-text">⭐ Because <b>only when</b> you face the problem <b>can you</b> solve it.</span>
-                        <button class="speaker-btn" onclick="playAt(198)">🔊</button>
-                    </div>
-                    <details class="expression-toggle">
-                        <summary>📖 표현 보기</summary>
-                        <div class="expression-toggle-content">
-                            <p>⭐ <b>only when ~ can you ~</b> ~해야만 ~할 수 있다 (도치 구문)</p>
-                        </div>
-                    </details>
-                </div>
-                
-                <div class="script-item">
-                    <div class="script-main">
-                        <span class="num-badge">31</span>
-                        <span class="script-text">Ask yourself today.</span>
-                        <button class="speaker-btn" onclick="playAt(206)">🔊</button>
-                    </div>
-                </div>
-                
-                <div class="script-item">
-                    <div class="script-main">
-                        <span class="num-badge">32</span>
-                        <span class="script-text">Am I truly comforting myself, or am I just avoiding the truth?</span>
-                        <button class="speaker-btn" onclick="playAt(210)">🔊</button>
-                    </div>
-                </div>
-                
-                <div class="script-item">
-                    <div class="script-main">
-                        <span class="num-badge">33</span>
-                        <span class="script-text">The courage to accept your flaws — that is real strength.</span>
+                        <span class="script-text">This is David Lee for ETY Entertainment.</span>
                         <button class="speaker-btn" onclick="playAt(218)">🔊</button>
                     </div>
+                    <details class="explain-toggle">
+                        <summary>해설 보기</summary>
+                        <div class="explain-content">
+                            <p class="korean-text">ETY 엔터테인먼트, 데이비드 리였습니다.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
+            
             <div class="nav-buttons">
                 <button class="nav-btn prev" onclick="showTab(2)">← 이전</button>
-                <button class="nav-btn next" onclick="showTab(4)">다음 단계 →</button>
+                <button class="nav-btn next" onclick="showTab(4)">다음 →</button>
             </div>
         </div>
         
-        <!-- TAB 4: STEP 3 표현정리 -->
+        <!-- ========== STEP 4 ========== -->
         <div class="tab-content" id="tab4">
-            <div class="card">
-                <div class="section-title">
-                    <div class="section-icon">📚</div>
-                    <h2>주요표현 5개</h2>
-                </div>
-                
-                <div class="expression-card">
-                    <div class="expression-header">
-                        <span class="expression-num">1</span>
-                        <span class="expression-keyword">put simply</span>
-                        <span class="expression-meaning">쉽게 말해, 간단히 말하면</span>
-                    </div>
-                    <div class="original-sentence">
-                        <p class="label">📍 오늘의 문장</p>
-                        <p class="sentence"><mark>Put simply</mark>, it is the tension you feel when your actions and beliefs do not match.</p>
-                    </div>
-                    <div class="example-sentences">
-                        <p class="label">✏️ 예문</p>
-                        <div class="example">
-                            <p class="korean">쉽게 말해, 이 프로젝트를 끝내려면 시간이 더 필요해요.</p>
-                            <p class="english">→ Put simply, we need more time to finish this project.</p>
-                        </div>
-                        <div class="example">
-                            <p class="korean">간단히 말하면, 그건 불가능해요.</p>
-                            <p class="english">→ Put simply, it's impossible.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="expression-card">
-                    <div class="expression-header">
-                        <span class="expression-num">2</span>
-                        <span class="expression-keyword">deep down</span>
-                        <span class="expression-meaning">마음 깊은 곳에서는</span>
-                    </div>
-                    <div class="original-sentence">
-                        <p class="label">📍 오늘의 문장</p>
-                        <p class="sentence"><mark>Deep down</mark>, they sense that something is off.</p>
-                    </div>
-                    <div class="example-sentences">
-                        <p class="label">✏️ 예문</p>
-                        <div class="example">
-                            <p class="korean">마음 깊은 곳에서는 그 관계가 잘 안 되고 있다는 걸 알았어요.</p>
-                            <p class="english">→ Deep down, I knew the relationship wasn't working.</p>
-                        </div>
-                        <div class="example">
-                            <p class="korean">그녀는 겉으로는 웃었지만, 마음 깊은 곳에서는 슬펐어요.</p>
-                            <p class="english">→ She smiled on the outside, but deep down, she was sad.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="expression-card">
-                    <div class="expression-header">
-                        <span class="expression-num">3</span>
-                        <span class="expression-keyword">talk oneself out of ~ing</span>
-                        <span class="expression-meaning">~하지 않도록 스스로를 설득하다</span>
-                    </div>
-                    <div class="original-sentence">
-                        <p class="label">📍 오늘의 문장</p>
-                        <p class="sentence">To avoid the discomfort of reality, we <mark>talk ourselves out of</mark> seeing it.</p>
-                    </div>
-                    <div class="example-sentences">
-                        <p class="label">✏️ 예문</p>
-                        <div class="example">
-                            <p class="korean">포기하려고 했지만 그만두지 않도록 스스로를 설득했어요.</p>
-                            <p class="english">→ I almost quit, but I talked myself out of giving up.</p>
-                        </div>
-                        <div class="example">
-                            <p class="korean">그녀는 그 일자리에 지원하지 않도록 스스로를 설득했어요.</p>
-                            <p class="english">→ She talked herself out of applying for the job.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="expression-card">
-                    <div class="expression-header">
-                        <span class="expression-num">4</span>
-                        <span class="expression-keyword">not A, but B</span>
-                        <span class="expression-meaning">A가 아니라 B</span>
-                    </div>
-                    <div class="original-sentence">
-                        <p class="label">📍 오늘의 문장</p>
-                        <p class="sentence">What we truly need is <mark>not</mark> self-affirmation, <mark>but</mark> self-compassion.</p>
-                    </div>
-                    <div class="example-sentences">
-                        <p class="label">✏️ 예문</p>
-                        <div class="example">
-                            <p class="korean">중요한 건 얼마나 빨리 가느냐가 아니라 얼마나 멀리 왔느냐예요.</p>
-                            <p class="english">→ What matters is not how fast you go, but how far you've come.</p>
-                        </div>
-                        <div class="example">
-                            <p class="korean">성공은 돈이 아니라 행복이에요.</p>
-                            <p class="english">→ Success is not about money, but about happiness.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="expression-card">
-                    <div class="expression-header">
-                        <span class="expression-num">5</span>
-                        <span class="expression-keyword">only when ~ can you ~</span>
-                        <span class="expression-meaning">~해야만 ~할 수 있다</span>
-                    </div>
-                    <div class="original-sentence">
-                        <p class="label">📍 오늘의 문장</p>
-                        <p class="sentence">Because <mark>only when</mark> you face the problem <mark>can you</mark> solve it.</p>
-                    </div>
-                    <div class="example-sentences">
-                        <p class="label">✏️ 예문</p>
-                        <div class="example">
-                            <p class="korean">자신을 비교하는 걸 멈춰야만 진정으로 행복할 수 있어요.</p>
-                            <p class="english">→ Only when you stop comparing yourself can you truly be happy.</p>
-                        </div>
-                        <div class="example">
-                            <p class="korean">실패를 받아들여야만 성장할 수 있어요.</p>
-                            <p class="english">→ Only when you accept failure can you grow.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="section-title">
+                <div class="section-icon orange">🎯</div>
+                <h2>핵심문장 말하기</h2>
+                <span class="section-subtitle">한글을 보고 영어로 말해보세요</span>
             </div>
+            
+            <details class="key-sentence-toggle">
+                <summary>
+                    <span class="number">1</span>
+                    몇 년 전 업계를 떠났던 배우 마이클 한이 좋지 않은 이유로 다시 주목받고 있습니다.
+                    <span class="tap-hint">👆 탭하면 정답이 나와요</span>
+                </summary>
+                <div class="answer-content">
+                    <div class="english-answer">Actor Michael Han, who left the industry years ago, is back in the spotlight for the wrong reasons.</div>
+                    <div class="grammar-box">
+                        <span class="grammar-label">💡 표현</span> <b>be back in the spotlight</b> 다시 주목받다
+                    </div>
+                </div>
+            </details>
+            
+            <details class="key-sentence-toggle">
+                <summary>
+                    <span class="number">2</span>
+                    하지만 2023년, 모든 것이 무너졌습니다.
+                    <span class="tap-hint">👆 탭하면 정답이 나와요</span>
+                </summary>
+                <div class="answer-content">
+                    <div class="english-answer">But in 2023, everything fell apart.</div>
+                    <div class="grammar-box">
+                        <span class="grammar-label">💡 표현</span> <b>fall apart</b> 무너지다, 붕괴되다
+                    </div>
+                </div>
+            </details>
+            
+            <details class="key-sentence-toggle">
+                <summary>
+                    <span class="number">3</span>
+                    이야기가 퍼지면서 학창시절에 대한 더 많은 고발이 쏟아졌습니다.
+                    <span class="tap-hint">👆 탭하면 정답이 나와요</span>
+                </summary>
+                <div class="answer-content">
+                    <div class="english-answer">As the story spread, more accusations from his school days came pouring in.</div>
+                    <div class="grammar-box">
+                        <span class="grammar-label">💡 표현</span> <b>come pouring in</b> 쏟아지다, 밀려들다
+                    </div>
+                </div>
+            </details>
+            
+            <details class="key-sentence-toggle">
+                <summary>
+                    <span class="number">4</span>
+                    그는 모든 활동을 중단하고 자신의 행동을 깊이 반성하겠다고 말했습니다.
+                    <span class="tap-hint">👆 탭하면 정답이 나와요</span>
+                </summary>
+                <div class="answer-content">
+                    <div class="english-answer">He said he would stop all activities and deeply reflect on his actions.</div>
+                    <div class="grammar-box">
+                        <span class="grammar-label">💡 표현</span> <b>reflect on</b> ~을 반성하다, 되돌아보다
+                    </div>
+                </div>
+            </details>
+            
+            <details class="key-sentence-toggle">
+                <summary>
+                    <span class="number">5</span>
+                    "이래서 연예인을 동정하면 안 돼." "몇 년을 아무것도 안 하고도 여전히 호화롭게 사네." 비난이 쏟아졌습니다.
+                    <span class="tap-hint">👆 탭하면 정답이 나와요</span>
+                </summary>
+                <div class="answer-content">
+                    <div class="english-answer">"This is why you never pity celebrities." "Years of doing nothing, yet still living large." Criticism poured in.</div>
+                    <div class="grammar-box">
+                        <span class="grammar-label">💡 표현</span> <b>live large</b> 호화롭게 살다
+                    </div>
+                </div>
+            </details>
+            
             <div class="nav-buttons">
                 <button class="nav-btn prev" onclick="showTab(3)">← 이전</button>
-                <button class="nav-btn next" onclick="showTab(5)">다음 단계 →</button>
+                <button class="nav-btn next" onclick="showTab(5)">다음 →</button>
             </div>
         </div>
         
-        <!-- TAB 5: QUIZ -->
+        <!-- ========== STEP 5 ========== -->
         <div class="tab-content" id="tab5">
             <div class="card">
                 <div class="section-title">
-                    <div class="section-icon">🎯</div>
-                    <h2>퀴즈</h2>
+                    <div class="section-icon">🔄</div>
+                    <h2>복습하기</h2>
                 </div>
+                <p class="guide-text">처음보다 더 많이 들리나요?<br>들리는 문장을 따라 말해보세요!</p>
                 
-                <p class="quiz-type-title">📝 빈칸 채우기</p>
-                
-                <div class="quiz-item">
-                    <p class="quiz-question">
-                        <span class="num-badge">1</span>
-                        <input type="text" class="quiz-blank" placeholder="빈칸">, it's the tension you feel when your actions and beliefs don't match.
-                    </p>
-                    <p class="quiz-hint">(쉽게 말해, 행동과 믿음이 일치하지 않을 때 느끼는 긴장감이에요.)</p>
+                <div class="youtube-thumbnail" id="thumb5" onclick="playVideo('thumb5')">
+                    <img src="https://img.youtube.com/vi/dQSsU4qgKe0/maxresdefault.jpg" alt="썸네일">
+                    <div class="play-overlay"><div class="play-btn"></div></div>
                 </div>
-                
-                <div class="quiz-item">
-                    <p class="quiz-question">
-                        <span class="num-badge">2</span>
-                        <input type="text" class="quiz-blank" placeholder="빈칸">, I knew something was wrong.
-                    </p>
-                    <p class="quiz-hint">(마음 깊은 곳에서는 뭔가 잘못됐다는 걸 알았어.)</p>
-                </div>
-                
-                <div class="quiz-item">
-                    <p class="quiz-question">
-                        <span class="num-badge">3</span>
-                        She <input type="text" class="quiz-blank" placeholder="빈칸" style="min-width:180px;"> applying for the job.
-                    </p>
-                    <p class="quiz-hint">(그녀는 그 일자리에 지원하지 않도록 스스로를 설득했어.)</p>
-                </div>
-                
-                <p class="quiz-type-title" style="margin-top: 25px;">✍️ 영작하기</p>
-                
-                <div class="quiz-item">
-                    <p class="quiz-question">
-                        <span class="num-badge">4</span>
-                        중요한 건 돈이 아니라 행복이에요.
-                    </p>
-                    <input type="text" class="quiz-input" placeholder="영어로 작성하세요...">
-                </div>
-                
-                <div class="quiz-item">
-                    <p class="quiz-question">
-                        <span class="num-badge">5</span>
-                        자신을 비교하는 걸 멈춰야만 진정으로 행복할 수 있어요.
-                    </p>
-                    <input type="text" class="quiz-input" placeholder="영어로 작성하세요...">
-                </div>
-                
-                <p class="quiz-type-title" style="margin-top: 25px;">🔘 객관식</p>
-                
-                <div class="quiz-item">
-                    <p class="quiz-question">
-                        <span class="num-badge">6</span>
-                        "문제를 마주했을 때만 그것을 해결할 수 있다"를 영어로 바르게 표현한 것은?
-                    </p>
-                    <div class="quiz-options">
-                        <div class="quiz-option" onclick="selectOption(this)">a) Only when you face the problem you can solve it.</div>
-                        <div class="quiz-option" onclick="selectOption(this)">b) Only when you face the problem can you solve it.</div>
-                        <div class="quiz-option" onclick="selectOption(this)">c) When only you face the problem can you solve it.</div>
-                    </div>
-                </div>
-                
-                <details class="answer-section">
-                    <summary>📝 정답 확인</summary>
-                    <div class="answer-content" style="flex-direction: column;">
-                        <div class="answer-item" style="width: 100%;"><b>1.</b> Put simply</div>
-                        <div class="answer-item" style="width: 100%;"><b>2.</b> Deep down</div>
-                        <div class="answer-item" style="width: 100%;"><b>3.</b> talked herself out of</div>
-                        <div class="answer-item" style="width: 100%;"><b>4.</b> What matters is not money, but happiness.</div>
-                        <div class="answer-item" style="width: 100%;"><b>5.</b> Only when you stop comparing yourself can you truly be happy.</div>
-                        <div class="answer-item" style="width: 100%;"><b>6.</b> b) - only when이 문두에 오면 주어-조동사 도치 필수</div>
-                    </div>
-                </details>
             </div>
+            
             <div class="nav-buttons">
                 <button class="nav-btn prev" onclick="showTab(4)">← 이전</button>
-                <button class="nav-btn next" onclick="showTab(1)">처음부터 →</button>
+                <button class="nav-btn next" onclick="showTab(6)">퀴즈 풀기 →</button>
             </div>
         </div>
         
+        <!-- ========== QUIZ ========== -->
+        <div class="tab-content" id="tab6">
+            <div class="section-title">
+                <div class="section-icon orange">📝</div>
+                <h2>주요표현 퀴즈</h2>
+                <span class="section-subtitle">오늘 배운 10개 표현을 확인해보세요</span>
+            </div>
+            
+            <!-- 빈칸 채우기 -->
+            <div class="quiz-section">
+                <h3 class="quiz-type-title">빈칸 채우기</h3>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">1</span>
+                    <p class="quiz-question">
+                        Actor Michael Han is <input type="text" class="quiz-input" placeholder="___"> for the wrong reasons.
+                    </p>
+                    <p class="quiz-hint">(마이클 한이 좋지 않은 이유로 다시 주목받고 있습니다.)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">2</span>
+                    <p class="quiz-question">
+                        But in 2023, everything <input type="text" class="quiz-input" placeholder="___">.
+                    </p>
+                    <p class="quiz-hint">(하지만 2023년, 모든 것이 무너졌습니다.)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">3</span>
+                    <p class="quiz-question">
+                        More accusations from his school days <input type="text" class="quiz-input" placeholder="___">.
+                    </p>
+                    <p class="quiz-hint">(학창시절에 대한 더 많은 고발이 쏟아졌습니다.)</p>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">4</span>
+                    <p class="quiz-question">
+                        He said he would deeply <input type="text" class="quiz-input" placeholder="___"> his actions.
+                    </p>
+                    <p class="quiz-hint">(그는 자신의 행동을 깊이 반성하겠다고 말했습니다.)</p>
+                </div>
+            </div>
+            
+            <!-- 영작하기 -->
+            <div class="quiz-section">
+                <h3 class="quiz-type-title">영작하기</h3>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">5</span>
+                    <p class="quiz-question">다음 한글을 영어로 써보세요:</p>
+                    <p class="quiz-korean">"몇 년을 아무것도 안 하고도 여전히 호화롭게 사네."</p>
+                    <textarea class="quiz-textarea" placeholder="영어로 써보세요..."></textarea>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">6</span>
+                    <p class="quiz-question">다음 한글을 영어로 써보세요:</p>
+                    <p class="quiz-korean">"그는 조용히 복귀를 시도했습니다."</p>
+                    <textarea class="quiz-textarea" placeholder="영어로 써보세요..."></textarea>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">7</span>
+                    <p class="quiz-question">다음 한글을 영어로 써보세요:</p>
+                    <p class="quiz-korean">"그는 기자회견을 열고 눈물로 사과했습니다."</p>
+                    <textarea class="quiz-textarea" placeholder="영어로 써보세요..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 의미 고르기 -->
+            <div class="quiz-section">
+                <h3 class="quiz-type-title">의미 고르기</h3>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">8</span>
+                    <p class="quiz-question">"fall apart"의 의미는?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q8"> a) 함께 하다</label>
+                        <label class="quiz-option"><input type="radio" name="q8"> b) 무너지다, 붕괴되다</label>
+                        <label class="quiz-option"><input type="radio" name="q8"> c) 일어나다</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">9</span>
+                    <p class="quiz-question">"reflect on"의 의미는?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q9"> a) 비추다</label>
+                        <label class="quiz-option"><input type="radio" name="q9"> b) 반성하다, 되돌아보다</label>
+                        <label class="quiz-option"><input type="radio" name="q9"> c) 거절하다</label>
+                    </div>
+                </div>
+                
+                <div class="quiz-item">
+                    <span class="quiz-num">10</span>
+                    <p class="quiz-question">"live large"의 의미는?</p>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q10"> a) 오래 살다</label>
+                        <label class="quiz-option"><input type="radio" name="q10"> b) 크게 살다</label>
+                        <label class="quiz-option"><input type="radio" name="q10"> c) 호화롭게 살다</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 정답 확인 -->
+            <details class="quiz-answer-toggle">
+                <summary>📝 정답 확인</summary>
+                <div class="quiz-answer-content">
+                    <h4>빈칸 채우기</h4>
+                    <p><b>1.</b> back in the spotlight</p>
+                    <p><b>2.</b> fell apart</p>
+                    <p><b>3.</b> came pouring in</p>
+                    <p><b>4.</b> reflect on</p>
+                    
+                    <h4>영작하기</h4>
+                    <p><b>5.</b> Years of doing nothing, yet still living large.</p>
+                    <p><b>6.</b> He quietly tried to make a comeback.</p>
+                    <p><b>7.</b> He held a press conference and apologized in tears.</p>
+                    
+                    <h4>의미 고르기</h4>
+                    <p><b>8.</b> b) 무너지다, 붕괴되다</p>
+                    <p><b>9.</b> b) 반성하다, 되돌아보다</p>
+                    <p><b>10.</b> c) 호화롭게 살다</p>
+                </div>
+            </details>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="showTab(5)">← 이전</button>
+                <button class="nav-btn next" onclick="showTab(1)">처음부터 다시 →</button>
+            </div>
+        </div>
+        
+        <!-- 저작권 -->
         <div class="copyright">
             이 콘텐츠는 개인 학습 목적으로만 이용하실 수 있습니다.<br>
-            콘텐츠 이용에 관한 문의: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2749425057574b426749465142550944484a">[email&#160;protected]</a>
+            콘텐츠 이용에 관한 문의: newpple@naver.com
         </div>
     </div>
     
     <script>
-        var videoId = 'udvsSnrbqhM';
-        var player = null;
+        var videoId = 'dQSsU4qgKe0';
+        var player2 = null;
+        var player3 = null;
         
         // YouTube IFrame API 로드
         var tag = document.createElement('script');
@@ -1146,23 +1494,18 @@
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
+        // 탭 전환
         function showTab(n) {
-            // 영상 멈추기
-            if (player && player.pauseVideo) {
-                player.pauseVideo();
-            }
-            if (player2 && player2.pauseVideo) {
-                player2.pauseVideo();
-            }
+            if (player2 && player2.pauseVideo) player2.pauseVideo();
+            if (player3 && player3.pauseVideo) player3.pauseVideo();
             
-            // 모든 탭의 video-container를 썸네일로 복원
             restoreThumb('tab1', 'thumb1');
             restoreThumb('tab2', 'thumb2');
             restoreThumb('tab3', 'thumb3');
-            player = null;
+            restoreThumb('tab5', 'thumb5');
             player2 = null;
+            player3 = null;
             
-            // 탭 전환
             var tabs = document.querySelectorAll('.tab-content');
             var btns = document.querySelectorAll('.tab-btn');
             tabs.forEach(function(tab) { tab.classList.remove('active'); });
@@ -1172,8 +1515,10 @@
             window.scrollTo(0, 0);
         }
         
+        // 썸네일 복원
         function restoreThumb(tabId, thumbId) {
             var tab = document.getElementById(tabId);
+            if (!tab) return;
             var vc = tab.querySelector('.video-container');
             if (vc) {
                 var thumb = document.createElement('div');
@@ -1185,22 +1530,14 @@
             }
         }
         
+        // 영상 재생
         function playVideo(thumbId) {
             var thumb = document.getElementById(thumbId);
             if (!thumb) return;
             var container = document.createElement('div');
             container.className = 'video-container';
             
-            // STEP 2 (thumb3) 또는 DICTATION (thumb2)는 API용 div로 생성
-            if (thumbId === 'thumb3') {
-                container.innerHTML = '<div id="ytplayer"></div>';
-                thumb.parentNode.replaceChild(container, thumb);
-                player = new YT.Player('ytplayer', {
-                    videoId: videoId,
-                    playerVars: { 'autoplay': 1, 'rel': 0 },
-                    events: { 'onReady': function(e) { e.target.playVideo(); } }
-                });
-            } else if (thumbId === 'thumb2') {
+            if (thumbId === 'thumb2') {
                 container.innerHTML = '<div id="ytplayer2"></div>';
                 thumb.parentNode.replaceChild(container, thumb);
                 player2 = new YT.Player('ytplayer2', {
@@ -1208,64 +1545,56 @@
                     playerVars: { 'autoplay': 1, 'rel': 0 },
                     events: { 'onReady': function(e) { e.target.playVideo(); } }
                 });
-            } else {
-                container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            } else if (thumbId === 'thumb3') {
+                container.innerHTML = '<div id="ytplayer3"></div>';
                 thumb.parentNode.replaceChild(container, thumb);
-            }
-        }
-        
-        // 🔊 버튼 - seekTo로 광고 없이 이동
-        function playAt(seconds) {
-            var thumb = document.getElementById('thumb3');
-            
-            if (thumb) {
-                // 썸네일이면 먼저 플레이어 생성
-                var container = document.createElement('div');
-                container.className = 'video-container';
-                container.innerHTML = '<div id="ytplayer"></div>';
-                thumb.parentNode.replaceChild(container, thumb);
-                
-                player = new YT.Player('ytplayer', {
+                player3 = new YT.Player('ytplayer3', {
                     videoId: videoId,
-                    playerVars: { 'autoplay': 1, 'rel': 0, 'start': seconds },
+                    playerVars: { 'autoplay': 1, 'rel': 0 },
                     events: { 'onReady': function(e) { e.target.playVideo(); } }
                 });
-            } else if (player && player.seekTo) {
-                // 이미 재생 중이면 seekTo로 이동 (광고 X)
-                player.seekTo(seconds, true);
-                player.playVideo();
+            } else {
+                container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe>';
+                thumb.parentNode.replaceChild(container, thumb);
             }
         }
         
-        // DICTATION용 🔊 버튼
-        var player2 = null;
-        
+        // DICTATION 🔊
         function playAtDict(seconds) {
             var thumb = document.getElementById('thumb2');
-            
             if (thumb) {
-                // 썸네일이면 플레이어 생성
                 var container = document.createElement('div');
                 container.className = 'video-container';
                 container.innerHTML = '<div id="ytplayer2"></div>';
                 thumb.parentNode.replaceChild(container, thumb);
-                
                 player2 = new YT.Player('ytplayer2', {
                     videoId: videoId,
                     playerVars: { 'autoplay': 1, 'rel': 0, 'start': seconds },
                     events: { 'onReady': function(e) { e.target.playVideo(); } }
                 });
             } else if (player2 && player2.seekTo) {
-                // 이미 재생 중이면 seekTo
                 player2.seekTo(seconds, true);
                 player2.playVideo();
             }
         }
         
-        function selectOption(el) {
-            var opts = el.parentElement.querySelectorAll('.quiz-option');
-            opts.forEach(function(o) { o.classList.remove('selected'); });
-            el.classList.add('selected');
+        // STEP 2·3 🔊
+        function playAt(seconds) {
+            var thumb = document.getElementById('thumb3');
+            if (thumb) {
+                var container = document.createElement('div');
+                container.className = 'video-container';
+                container.innerHTML = '<div id="ytplayer3"></div>';
+                thumb.parentNode.replaceChild(container, thumb);
+                player3 = new YT.Player('ytplayer3', {
+                    videoId: videoId,
+                    playerVars: { 'autoplay': 1, 'rel': 0, 'start': seconds },
+                    events: { 'onReady': function(e) { e.target.playVideo(); } }
+                });
+            } else if (player3 && player3.seekTo) {
+                player3.seekTo(seconds, true);
+                player3.playVideo();
+            }
         }
     </script>
 </body>
