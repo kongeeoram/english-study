@@ -1479,11 +1479,11 @@
         <!-- 저작권 -->
         <div class="copyright">
             이 콘텐츠는 개인 학습 목적으로만 이용하실 수 있습니다.<br>
-            콘텐츠 이용에 관한 문의: newpple@naver.com
+            콘텐츠 이용에 관한 문의: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d9b7bcaea9a9b5bc99b7b8afbcabf7bab6b4">[email&#160;protected]</a>
         </div>
     </div>
     
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         var videoId = 'dQSsU4qgKe0';
         var player2 = null;
         var player3 = null;
@@ -1554,7 +1554,7 @@
                     events: { 'onReady': function(e) { e.target.playVideo(); } }
                 });
             } else {
-                container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe>';
+                container.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&origin=https://kongeeoram.github.io" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
                 thumb.parentNode.replaceChild(container, thumb);
             }
         }
@@ -1589,13 +1589,4 @@
                 player3 = new YT.Player('ytplayer3', {
                     videoId: videoId,
                     playerVars: { 'autoplay': 1, 'rel': 0, 'start': seconds },
-                    events: { 'onReady': function(e) { e.target.playVideo(); } }
-                });
-            } else if (player3 && player3.seekTo) {
-                player3.seekTo(seconds, true);
-                player3.playVideo();
-            }
-        }
-    </script>
-</body>
-</html>
+                    events: { 'onReady': function(e) { e.target
